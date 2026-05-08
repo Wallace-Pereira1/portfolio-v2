@@ -1,0 +1,84 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Mapeamento manual para o motor do Tailwind v4 */
+  --color-navy-900: #050a15;
+  --color-navy-800: #0a1224;
+  --color-gold-500: #e1b12c;
+
+  --radius-xl: 1rem;
+  --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.45);
+}
+
+@layer components {
+  .glass-card {
+    background-color: rgba(10, 18, 36, 0.5);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-surface {
+    background-color: rgba(10, 18, 36, 0.35);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-xl);
+  }
+
+  .glass-border {
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .focus-ring {
+    outline: none;
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.12),
+      0 0 0 4px rgba(225, 177, 44, 0.22);
+  }
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    height: 100%;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+  }
+
+  img,
+  picture,
+  video,
+  canvas,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  input,
+  button,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  body {
+    @apply bg-navy-900 text-slate-200 antialiased;
+  }
+
+  ::selection {
+    background: rgba(225, 177, 44, 0.25);
+  }
+}
