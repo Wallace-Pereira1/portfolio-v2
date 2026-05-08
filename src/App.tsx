@@ -64,16 +64,20 @@ export default function App() {
           </p>
         </header>
 
-        <section className="mt-10 grid grid-cols-2 lg:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
+        <section className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
           {BENTO_CARDS.map((card) => {
             const colSpan =
               card.type === 'stack'
-                ? 'col-span-2 lg:col-span-12'
+                ? 'col-span-1 md:col-span-12 lg:col-span-12'
                 : card.size === 'lg'
-                  ? 'col-span-2 lg:col-span-7 lg:row-span-2'
-                  : card.id === 'project-ai' || card.id === 'project-portfolio'
-                    ? 'col-span-2 md:col-span-1 lg:col-span-6'
-                    : 'col-span-2 lg:col-span-5'
+                  ? 'col-span-1 md:col-span-7 lg:col-span-7 md:row-span-2 lg:row-span-2'
+                  : card.id === 'project-solargrid'
+                    ? 'col-span-1 md:col-span-5 lg:col-span-5'
+                    : card.id === 'project-fiscal'
+                      ? 'col-span-1 md:col-span-6 lg:col-span-5'
+                      : card.id === 'project-ocr' || card.id === 'project-quality'
+                        ? 'col-span-1 md:col-span-6 lg:col-span-6'
+                        : 'col-span-1 md:col-span-6 lg:col-span-5'
 
             if (card.type === 'stack') {
               return (

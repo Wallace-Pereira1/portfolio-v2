@@ -2,7 +2,6 @@ import {
     Layers, 
     Layout, 
     Bot,
-    BrainCircuit,
     Database,
     Terminal
   } from 'lucide-react';
@@ -23,47 +22,56 @@ import {
 
   export const PROJECTS = [
     {
-      id: 'n8n-jewel-automation',
-      title: 'Automação n8n para Joalheria',
+      id: 'partner-management-hub',
+      title: 'Partner Management Hub & Social Feed',
       descriptionLong:
-        'Pipeline completo de automação para atendimento e operação: captura de leads, qualificação, follow-up e atualizações em tempo real. Integração com APIs externas, normalização de dados, filas/retentativas e alertas. Redução de tempo operacional e aumento de previsibilidade no funil.',
-      technologies: ['n8n', 'Node.js', 'APIs', 'Webhooks', 'PostgreSQL', 'RPA'],
+        'Contexto: Centralização de gestão de parceiros e feed social. Engenharia: Implementação de Service Layer Pattern em React/TypeScript para desacoplamento de lógica. Persistência de dados via Supabase (PostgreSQL) com segurança via Row-Level Security (RLS). Resultado: Redução de complexidade no componente principal e arquitetura escalável para novos módulos.',
+      technologies: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Service Pattern'],
+      imageUrl: 'https://picsum.photos/seed/partnerhub/1280/720',
       links: {
-        github: 'https://github.com/',
-        demo: 'https://example.com/',
+        github: 'https://github.com/Wallace-Pereira1/solargrid-app.git',
       },
     },
     {
-      id: 'supabase-integrator',
-      title: 'Integrador Supabase (Auth + DB + Storage)',
+      id: 'fiscal-sentinel',
+      title: 'Fiscal Sentinel',
       descriptionLong:
-        'Template/infra para produtos fullstack com Supabase: autenticação, políticas RLS, CRUD tipado, storage e auditoria. Estrutura pronta para escalar com boas práticas de segurança, observabilidade e DX (TypeScript).',
-      technologies: ['Supabase', 'PostgreSQL', 'TypeScript', 'RLS', 'React', 'Vite'],
+        'Contexto: Monitoramento automatizado de obrigações fiscais e compliance. Engenharia: Scripts de validação contínua e integração de dados para auditoria em tempo real. Foco em integridade de dados e redução de falhas humanas operacionais. Resultado: Garantia de conformidade fiscal e automação de alertas de divergência.',
+      technologies: ['TypeScript', 'Node.js', 'Automação', 'Data Integrity', 'Compliance'],
       links: {
-        github: 'https://github.com/',
-        demo: 'https://example.com/',
+        github: 'https://github.com/Wallace-Pereira1/fiscal-sentinel',
       },
     },
     {
-      id: 'ai-agent-workflows',
-      title: 'Workflows de IA (Agents + Tooling)',
+      id: 'invoice-ocr-ia',
+      title: 'Leitor de Notas (IA)',
       descriptionLong:
-        'Coleção de workflows de IA focados em produtividade: agentes com ferramentas, roteamento de prompts, automação de tarefas repetitivas e integrações com OpenAI/Claude/Gemini via APIs. Controle de custos, logs e fallback de modelos.',
-      technologies: ['OpenAI', 'Claude', 'Gemini', 'OpenRouter', 'Node.js', 'Automation'],
+        'Contexto: Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs em JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
+      technologies: ['Gemini 2.0 Flash', 'OCR', 'JSON', 'Automação', 'IA aplicada'],
+      imageUrl: 'https://picsum.photos/seed/ocr/1280/720',
       links: {
-        github: 'https://github.com/',
-        demo: 'https://example.com/',
+        github: 'https://github.com/Wallace-Pereira1',
       },
     },
     {
-      id: 'fullstack-bento-portfolio',
-      title: 'Portfólio Bento (Performance + UX)',
+      id: 'quality-analysis',
+      title: 'Quality Analysis',
       descriptionLong:
-        'SPA moderna construída com React + Vite, com foco em performance, micro-interações e apresentação premium do perfil. Layout Bento, animações fluidas, componentes reutilizáveis e dados centralizados para fácil manutenção.',
-      technologies: ['React', 'TypeScript', 'Vite', 'Tailwind CSS', 'Framer Motion', 'UI/UX'],
+        'Contexto: Controle de qualidade e padronização de processos industriais/operacionais. Engenharia: Interface para análise de métricas e conformidade técnica. Foco em padronização de fluxos de trabalho e monitoramento de KPIs de qualidade. Resultado: Melhoria na eficiência operacional e garantia de que os processos sigam normas técnicas rigorosas.',
+      technologies: ['Python', 'Análise de Dados', 'Qualidade', 'Compliance', 'Relatórios'],
+      imageUrl: 'https://picsum.photos/seed/quality/1280/720',
       links: {
-        github: 'https://github.com/',
-        demo: 'https://example.com/',
+        github: 'https://github.com/Wallace-Pereira1/process-quality-analysis-bakery',
+      },
+    },
+    {
+      id: 'bento-portfolio-v2',
+      title: 'Bento Portfolio v2',
+      descriptionLong: 'Esta SPA construída com Vite, Tailwind v4 e Framer Motion.',
+      technologies: ['React', 'TypeScript', 'Vite', 'Tailwind v4', 'Framer Motion'],
+      imageUrl: 'https://picsum.photos/seed/bento/1280/720',
+      links: {
+        github: 'https://github.com/Wallace-Pereira1/portfolio-v2.git',
       },
     },
   ] as const
@@ -76,44 +84,44 @@ import {
       type: "profile"
     },
     {
-      id: "project-n8n",
-      title: "Automação n8n",
-      description: "Automação ponta a ponta com integrações, filas e alertas.",
-      icon: BrainCircuit,
+      id: "project-solargrid",
+      title: "Partner Management Hub & Social Feed",
+      description: "Hub de parceiros e feed social com Service Layer, Supabase e RLS.",
+      icon: Layout,
       size: "md",
       tag: "Projeto",
       type: "project",
-      projectId: "n8n-jewel-automation"
+      projectId: "partner-management-hub"
     },
     {
-      id: "project-supabase",
-      title: "Integrador Supabase",
-      description: "Auth, RLS, CRUD tipado e storage prontos para escalar.",
+      id: "project-fiscal",
+      title: "Fiscal Sentinel",
+      description: "Validação contínua, auditoria em tempo real e alertas de divergência.",
       icon: Database,
       size: "md",
       tag: "Projeto",
       type: "project",
-      projectId: "supabase-integrator"
+      projectId: "fiscal-sentinel"
     },
     {
-      id: "project-ai",
-      title: "Workflows de IA",
-      description: "Agents, tooling e automação com controle de custos.",
+      id: "project-ocr",
+      title: "Leitor de Notas (IA)",
+      description: "Pipeline Gemini 2.0 Flash + visão: PDFs e recibos em JSON estruturado.",
       icon: Bot,
       size: "md",
       tag: "Projeto",
       type: "project",
-      projectId: "ai-agent-workflows"
+      projectId: "invoice-ocr-ia"
     },
     {
-      id: "project-portfolio",
-      title: "Bento Portfolio",
-      description: "Performance + UI/UX premium com micro-interações.",
+      id: "project-quality",
+      title: "Quality Analysis",
+      description: "Métricas, KPIs de qualidade e conformidade em processos operacionais.",
       icon: Layers,
       size: "md",
       tag: "Projeto",
       type: "project",
-      projectId: "fullstack-bento-portfolio"
+      projectId: "quality-analysis"
     },
     {
       id: "tech-stack",

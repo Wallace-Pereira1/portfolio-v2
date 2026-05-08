@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { X } from 'lucide-react'
+import { ArrowUpRight, X } from 'lucide-react'
 import { useEffect } from 'react'
 
 export type Project = {
@@ -7,8 +7,9 @@ export type Project = {
   title: string
   descriptionLong: string
   technologies: readonly string[]
+  imageUrl?: string
   links: {
-    github?: string
+    github: string
     demo?: string
   }
 }
@@ -58,6 +59,16 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
             transition={{ duration: 0.18, ease: 'easeOut' }}
             onClick={(e) => e.stopPropagation()}
           >
+            {project.imageUrl && (
+              <div className="mb-6 aspect-video overflow-hidden rounded-xl border border-white/10 bg-white/5">
+                <img
+                  src={project.imageUrl}
+                  alt={`Print do projeto ${project.title}`}
+                  className="h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
+            )}
             <div className="flex items-start justify-between gap-6">
               <div className="min-w-0">
                 <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
@@ -99,24 +110,24 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              {project.links.github && (
-                <a
-                  className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
-                  href={project.links.github}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  GitHub
-                </a>
-              )}
+              <a
+                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
+                href={project.links.github}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <ArrowUpRight size={16} />
+                GitHub
+              </a>
               {project.links.demo && (
                 <a
-                  className="inline-flex items-center justify-center rounded-full border border-gold-500/30 bg-gold-500/10 px-5 py-3 text-sm font-semibold text-gold-500 transition-all hover:border-gold-500/50 hover:bg-gold-500/15"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-5 py-3 text-sm font-semibold text-gold-500 transition-all hover:border-gold-500/50 hover:bg-gold-500/15"
                   href={project.links.demo}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Demo
+                  <ArrowUpRight size={16} />
+                  Ver Demo
                 </a>
               )}
             </div>
