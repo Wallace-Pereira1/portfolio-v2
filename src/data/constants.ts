@@ -14,16 +14,32 @@ import sentinelImg from "../assets/fiscal-sentinel.png";
 
 export const INFO = {
   name: "Wallace Pereira",
-  title: "Software Engineer & Especialista em IA",
+  title: "Fullstack Software Engineer",
   education: "Bacharel em Ciência da Computação",
   location: "Rio de Janeiro, Brasil",
 };
 
 export const STACKS = [
-  { name: "Linguagens", items: ["TypeScript", "Python", "C++", "Java"], icon: Terminal },
-  { name: "Frontend", items: ["React", "Vite", "Tailwind CSS"], icon: Layout },
-  { name: "Backend", items: ["Node.js", "Supabase", "PostgreSQL"], icon: Database },
-  { name: "AI & Automation", items: ["n8n", "Make", "OpenAI", "Agents"], icon: Bot },
+  { 
+    name: "Linguagens", 
+    items: ["TypeScript", "JavaScript", "Python", "C++", "Java", "PHP"], 
+    icon: Terminal 
+  },
+  { 
+    name: "Frontend", 
+    items: [ "Angular","React", "Vite","Vue", "Tailwind CSS", "Figma"],
+    icon: Layout 
+  },
+  { 
+    name: "Backend & Infra", 
+    items: ["Node.js", "Supabase", "PostgreSQL", "SQL", "MySQL", "APIs"], 
+    icon: Database 
+  },
+  { 
+    name: "AI & Automation", 
+    items: ["n8n", "Make", "Claude AI", "Gemini", "Agents", "Webhooks"], 
+    icon: Bot 
+  }
 ];
 
 export const PROJECTS = [
