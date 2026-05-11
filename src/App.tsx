@@ -75,7 +75,7 @@ export default function App() {
                     ? 'col-span-1 md:col-span-5 lg:col-span-5'
                     : card.id === 'project-fiscal'
                       ? 'col-span-1 md:col-span-6 lg:col-span-5'
-                      : card.id === 'project-ocr' || card.id === 'project-quality'
+                      : card.id === 'project-ocr' || card.id === 'project-real-estate-ai'
                         ? 'col-span-1 md:col-span-6 lg:col-span-6'
                         : 'col-span-1 md:col-span-6 lg:col-span-5'
 

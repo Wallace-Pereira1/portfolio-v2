@@ -9,8 +9,8 @@ import {
 // Importações das imagens locais
 import partnerImg from '../assets/partner-management-hub.png';
 import ocrImg from '../assets/invoice-ocr-ia.png';
-import qualityImg from "../assets/quality-analysis.png";
 import sentinelImg from "../assets/fiscal-sentinel.png";
+import realEstateAIImg from "../assets/project-real-estate-ai.png";
 
 export const INFO = {
   name: "Wallace Pereira",
@@ -78,14 +78,14 @@ export const PROJECTS = [
     },
   },
   {
-    id: 'quality-analysis',
-    title: 'Quality Analysis',
+    id: 'real-estate-ai-agent',
+    title: 'AI Real Estate Sales Agent',
     descriptionLong:
-      'Contexto: Controle de qualidade e padronização de processos industriais/operacionais. Engenharia: Interface para análise de métricas e conformidade técnica. Foco em padronização de fluxos de trabalho e monitoramento de KPIs de qualidade. Resultado: Melhoria na eficiência operacional e garantia de que os processos sigam normas técnicas rigorosas.',
-    technologies: ['Python', 'Análise de Dados', 'Qualidade', 'Compliance', 'Relatórios'],
-    imageUrl: qualityImg, // Imagem local atualizada
+      'Contexto: Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integração em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
+    technologies: ['OpenAI', 'Whisper', 'n8n', 'CRM API', 'Sentiment Analysis', 'Automation'],
+    imageUrl: realEstateAIImg,
     links: {
-      github: 'https://github.com/Wallace-Pereira1/process-quality-analysis-bakery',
+      github: 'https://github.com/Wallace-Pereira1',
     },
   },
   {
@@ -138,14 +138,14 @@ export const BENTO_CARDS = [
     projectId: "invoice-ocr-ia"
   },
   {
-    id: "project-quality",
-    title: "Quality Analysis",
-    description: "Métricas, KPIs de qualidade e conformidade em processos operacionais.",
-    icon: Layers,
+    id: "project-real-estate-ai",
+    title: "AI Real Estate Sales Agent",
+    description: "Agente multimodal com OpenAI, Whisper e CRM para qualificação inteligente de leads.",
+    icon: Bot,
     size: "md",
-    tag: "Projeto",
+    tag: "Projeto Corporativo",
     type: "project",
-    projectId: "quality-analysis"
+    projectId: "real-estate-ai-agent"
   },
   {
     id: "tech-stack",
