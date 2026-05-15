@@ -3,8 +3,49 @@ import { BentoCard } from './components/BentoCard'
 import { ProjectModal } from './components/ProjectModal'
 import { ResumeModal } from './components/ResumeModal' // Importe o novo componente
 import { BENTO_CARDS, INFO, PROJECTS, STACKS } from './data/constants'
-import { FileText } from 'lucide-react' // Ícone para o currículo
+import { FileText, Grid, FolderGit2, Layers, Mail } from 'lucide-react'
 import meImg from './assets/me.jpg'
+import {
+  SiTypescript, SiJavascript, SiPython, SiCplusplus, SiPhp,
+  SiAngular, SiReact, SiVite, SiVuedotjs, SiTailwindcss, SiFigma,
+  SiNodedotjs, SiSupabase, SiPostgresql, SiMysql
+} from 'react-icons/si'
+import { FaJava, FaDatabase, FaCogs, FaRobot, FaNetworkWired, FaProjectDiagram } from 'react-icons/fa'
+
+// Mapeia os ícones coloridos baseados no nome da Stack
+function StackIcon({ name }: { name: string }) {
+  const getIcon = () => {
+    switch (name) {
+      case 'TypeScript': return <SiTypescript color="#3178C6" />;
+      case 'JavaScript': return <SiJavascript color="#F7DF1E" />;
+      case 'Python': return <SiPython color="#3776AB" />;
+      case 'C++': return <SiCplusplus color="#00599C" />;
+      case 'Java': return <FaJava color="#007396" />;
+      case 'PHP': return <SiPhp color="#777BB4" />;
+      case 'Angular': return <SiAngular color="#DD0031" />;
+      case 'React': return <SiReact color="#61DAFB" />;
+      case 'Vite': return <SiVite color="#646CFF" />;
+      case 'Vue': return <SiVuedotjs color="#4FC08D" />;
+      case 'Tailwind CSS': return <SiTailwindcss color="#06B6D4" />;
+      case 'Figma': return <SiFigma color="#F24E1E" />;
+      case 'Node.js': return <SiNodedotjs color="#339933" />;
+      case 'Supabase': return <SiSupabase color="#3ECF8E" />;
+      case 'PostgreSQL': return <SiPostgresql color="#4169E1" />;
+      case 'SQL': return <FaDatabase color="#003B57" />;
+      case 'MySQL': return <SiMysql color="#4479A1" />;
+      case 'APIs': return <FaNetworkWired color="#00599C" />;
+      case 'n8n': return <FaProjectDiagram color="#FF6D5A" />;
+      case 'Make': return <FaCogs color="#5B12BA" />;
+      case 'Claude AI': return <FaRobot color="#D4A373" />;
+      case 'Gemini': return <FaRobot color="#1E88E5" />;
+      case 'Agents': return <FaRobot color="#A020F0" />;
+      case 'Webhooks': return <FaNetworkWired color="#FF8C00" />;
+      default: return null;
+    }
+  };
+  const icon = getIcon();
+  return icon ? <span className="text-[16px]">{icon}</span> : null;
+}
 
 // Ícones SVG mantidos conforme seu código
 function GitHubIcon({ size = 18 }: { size?: number }) {
@@ -23,9 +64,12 @@ function LinkedInIcon({ size = 18 }: { size?: number }) {
   )
 }
 
+type Tab = 'home' | 'projects' | 'stacks';
+
 export default function App() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
   const [isResumeOpen, setIsResumeOpen] = useState(false) // Estado para o Currículo
+  const [currentTab, setCurrentTab] = useState<Tab>('home') // Estado de abas
 
   const selectedProject = useMemo(
     () => PROJECTS.find((p) => p.id === selectedProjectId) ?? null,
@@ -57,42 +101,52 @@ export default function App() {
           </p>
         </header>
 
-        <section className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
-          {BENTO_CARDS.map((card) => {
+        {/* Barra de Navegação */}
+        <nav className="mt-10 flex flex-wrap items-center gap-2 p-1.5 bg-white/5 rounded-full border border-white/10 w-fit">
+          <button
+            onClick={() => setCurrentTab('home')}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+              currentTab === 'home' ? 'bg-gold-500/20 text-gold-500' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+            }`}
+          >
+            <Grid size={16} />
+            Visão Geral
+          </button>
+          <button
+            onClick={() => setCurrentTab('projects')}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+              currentTab === 'projects' ? 'bg-gold-500/20 text-gold-500' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+            }`}
+          >
+            <FolderGit2 size={16} />
+            Todos os Projetos
+          </button>
+          <button
+            onClick={() => setCurrentTab('stacks')}
+            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
+              currentTab === 'stacks' ? 'bg-gold-500/20 text-gold-500' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+            }`}
+          >
+            <Layers size={16} />
+            Minhas Stacks
+          </button>
+        </nav>
+
+        {/* PÁGINA: VISÃO GERAL (HOME) */}
+        {currentTab === 'home' && (
+          <section className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
+          {BENTO_CARDS.filter(card => card.type !== 'stack').map((card) => {
             // ... (logica de colSpan mantida)
             const colSpan =
-              card.type === 'stack'
-                ? 'col-span-1 md:col-span-12 lg:col-span-12'
-                : card.size === 'lg'
-                  ? 'col-span-1 md:col-span-7 lg:col-span-7 md:row-span-2 lg:row-span-2'
-                  : card.id === 'project-solargrid'
-                    ? 'col-span-1 md:col-span-5 lg:col-span-5'
-                    : card.id === 'project-fiscal'
-                      ? 'col-span-1 md:col-span-6 lg:col-span-5'
-                      : card.id === 'project-ocr' || card.id === 'project-real-estate-ai'
-                        ? 'col-span-1 md:col-span-6 lg:col-span-6'
-                        : 'col-span-1 md:col-span-6 lg:col-span-5'
-
-            if (card.type === 'stack') {
-              return (
-                <div key={card.id} className={`glass-card h-auto p-8 md:p-10 ${colSpan}`}>
-                  <h2 className="text-lg font-bold text-white">Stacks</h2>
-                  <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {STACKS.map((group) => (
-                      <div key={group.name} className="flex flex-col gap-4 p-2">
-                        <div className="flex items-center gap-3 text-gold-500 drop-shadow-[0_0_14px_rgba(225,177,44,0.22)]">
-                          <group.icon size={20} />
-                          <p className="text-xs font-extrabold tracking-[0.22em] uppercase">{group.name}</p>
-                        </div>
-                        <p className="px-2 text-sm text-slate-200/80 leading-relaxed break-words whitespace-normal">
-                          {group.items.join(' • ')}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )
-            }
+              card.size === 'lg'
+                ? 'col-span-1 md:col-span-7 lg:col-span-7 md:row-span-2 lg:row-span-2'
+                : card.id === 'project-solargrid'
+                  ? 'col-span-1 md:col-span-5 lg:col-span-5'
+                  : card.id === 'project-fiscal'
+                    ? 'col-span-1 md:col-span-6 lg:col-span-5'
+                    : card.id === 'project-ocr' || card.id === 'project-real-estate-ai'
+                      ? 'col-span-1 md:col-span-6 lg:col-span-6'
+                      : 'col-span-1 md:col-span-6 lg:col-span-5'
 
             if (card.type === 'profile') {
               return (
@@ -146,6 +200,16 @@ export default function App() {
                           <FileText size={18} />
                         </button>
 
+                        {/* Botão E-mail */}
+                        <a
+                          href="mailto:wallacepereira@proton.me"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition-all hover:bg-white/10 hover:border-white/20 hover:text-gold-500"
+                          aria-label="Email"
+                          title="Email"
+                        >
+                          <Mail size={18} />
+                        </a>
+
                         <a
                           href="https://github.com/Wallace-Pereira1"
                           target="_blank"
@@ -194,6 +258,51 @@ export default function App() {
             )
           })}
         </section>
+      )}
+
+      {/* PÁGINA: TODOS OS PROJETOS */}
+      {currentTab === 'projects' && (
+        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PROJECTS.map((project) => (
+            <div key={project.id} className="col-span-1">
+              <BentoCard
+                title={project.title}
+                description={
+                  project.descriptionLong.length > 120
+                    ? project.descriptionLong.substring(0, 120) + '...'
+                    : project.descriptionLong
+                }
+                tag="Projeto"
+                icon={FolderGit2}
+                className="h-full min-h-[220px] cursor-pointer hover:border-gold-500/50 transition-colors"
+                onClick={() => setSelectedProjectId(project.id)}
+              />
+            </div>
+          ))}
+        </section>
+      )}
+
+      {/* PÁGINA: MINHAS STACKS */}
+      {currentTab === 'stacks' && (
+        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {STACKS.map((group) => (
+            <div key={group.name} className="glass-card p-8 flex flex-col gap-6">
+              <div className="flex items-center gap-4 text-gold-500 border-b border-white/10 pb-4">
+                <group.icon size={28} />
+                <h2 className="text-xl font-bold tracking-wider uppercase">{group.name}</h2>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {group.items.map((item) => (
+                  <span key={item} className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:border-gold-500/50 hover:bg-gold-500/10 transition-colors cursor-default">
+                    <StackIcon name={item} />
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
       </div>
 
       <ProjectModal
