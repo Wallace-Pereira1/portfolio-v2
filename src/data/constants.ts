@@ -54,6 +54,38 @@ export const PROJECTS = [
     },
   },
   {
+    id: 'real-estate-ai-agent',
+    title: 'AI Real Estate Sales Agent',
+    descriptionLong:
+      'Contexto: Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integração em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
+    technologies: ['OpenAI', 'Whisper', 'n8n', 'CRM API', 'Sentiment Analysis', 'Automation'],
+    imageUrl: realEstateAIImg,
+    links: {
+      github: 'https://github.com/Wallace-Pereira1',
+    },
+  },
+  {
+    id: 'projeto-legado',
+    title: 'Modernização de Sistema Legado',
+    descriptionLong: 'Atuação na migração de um sistema corporativo antigo para arquitetura Angular (SPA). Desenvolvimento de componentes de UI, modais complexos e lógica de negócio em TypeScript.',
+    technologies: ['Angular', 'TypeScript', 'Spring', 'Tailwind', 'Angular Material'],
+    imageUrl: 'https://picsum.photos/seed/bento/1280/720',
+    links: {
+      github: 'https://github.com/Wallace-Pereira1',
+    },
+  },
+  {
+    id: 'invoice-ocr-ia',
+    title: 'Leitor de Notas (IA)',
+    descriptionLong:
+    'Contexto: Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs em JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
+    technologies: ['Gemini 2.0 Flash', 'OCR', 'JSON', 'Automação', 'IA aplicada'],
+    imageUrl: ocrImg, // Imagem local atualizada
+    links: {
+      github: 'https://github.com/Wallace-Pereira1',
+    },
+  },
+  {
     id: 'fiscal-sentinel',
     title: 'Fiscal Sentinel',
     descriptionLong:
@@ -63,28 +95,6 @@ export const PROJECTS = [
     imageUrl: sentinelImg,
     links: {
       github: 'https://github.com/Wallace-Pereira1/fiscal-sentinel',
-    },
-  },
-  {
-    id: 'invoice-ocr-ia',
-    title: 'Leitor de Notas (IA)',
-    descriptionLong:
-      'Contexto: Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs em JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
-    technologies: ['Gemini 2.0 Flash', 'OCR', 'JSON', 'Automação', 'IA aplicada'],
-    imageUrl: ocrImg, // Imagem local atualizada
-    links: {
-      github: 'https://github.com/Wallace-Pereira1',
-    },
-  },
-  {
-    id: 'real-estate-ai-agent',
-    title: 'AI Real Estate Sales Agent',
-    descriptionLong:
-      'Contexto: Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integração em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
-    technologies: ['OpenAI', 'Whisper', 'n8n', 'CRM API', 'Sentiment Analysis', 'Automation'],
-    imageUrl: realEstateAIImg,
-    links: {
-      github: 'https://github.com/Wallace-Pereira1',
     },
   },
   {
@@ -127,16 +137,6 @@ export const BENTO_CARDS = [
     projectId: "fiscal-sentinel"
   },
   {
-    id: "project-ocr",
-    title: "Leitor de Notas (IA)",
-    description: "Pipeline Gemini 2.0 Flash + visão: PDFs e recibos em JSON estruturado.",
-    icon: Bot,
-    size: "md",
-    tag: "Projeto",
-    type: "project",
-    projectId: "invoice-ocr-ia"
-  },
-  {
     id: "project-real-estate-ai",
     title: "AI Real Estate Sales Agent",
     description: "Agente multimodal com OpenAI, Whisper e CRM para qualificação inteligente de leads.",
@@ -145,6 +145,16 @@ export const BENTO_CARDS = [
     tag: "Projeto Corporativo",
     type: "project",
     projectId: "real-estate-ai-agent"
+  },
+  {
+    id: "project-ocr",
+    title: "Leitor de Notas (IA)",
+    description: "Pipeline Gemini 2.0 Flash + visão: PDFs e recibos em JSON estruturado.",
+    icon: Bot,
+    size: "md",
+    tag: "Projeto",
+    type: "project",
+    projectId: "invoice-ocr-ia"
   },
   {
     id: "tech-stack",

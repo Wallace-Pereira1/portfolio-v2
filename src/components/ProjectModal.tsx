@@ -9,7 +9,7 @@ export type Project = {
   technologies: readonly string[]
   imageUrl?: string
   links: {
-    github: string
+    github?: string
     demo?: string
   }
 }
@@ -146,6 +146,17 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
                 <ArrowUpRight size={16} />
                 GitHub
               </a>
+              {project.links.github && (
+                <a
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <ArrowUpRight size={16} />
+                  GitHub
+                </a>
+              )}
               {project.links.demo && (
                 <a
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-gold-500/30 bg-gold-500/10 px-5 py-3 text-sm font-semibold text-gold-500 transition-all hover:border-gold-500/50 hover:bg-gold-500/15"
