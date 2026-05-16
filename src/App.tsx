@@ -119,7 +119,7 @@ export default function App() {
             }`}
           >
             <FolderGit2 size={16} />
-            Todos os Projetos
+            Projetos
           </button>
           <button
             onClick={() => setCurrentTab('stacks')}
@@ -128,7 +128,7 @@ export default function App() {
             }`}
           >
             <Layers size={16} />
-            Minhas Stacks
+            Tech Stacks
           </button>
         </nav>
 
