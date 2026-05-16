@@ -46,7 +46,7 @@ export const PROJECTS = [
     id: 'partner-management-hub',
     title: 'Partner Management Hub & Social Feed',
     descriptionLong:
-      'Contexto: Centralização de gestão de parceiros e feed social. Engenharia: Implementação de Service Layer Pattern em React/TypeScript para desacoplamento de lógica. Persistência de dados via Supabase (PostgreSQL) com segurança via Row-Level Security (RLS). Resultado: Redução de complexidade no componente principal e arquitetura escalável para novos módulos.',
+      'Centralização de gestão de parceiros e feed social. Engenharia: Implementação de Service Layer Pattern em React/TypeScript para desacoplamento de lógica. Persistência de dados via Supabase (PostgreSQL) com segurança via Row-Level Security (RLS). Resultado: Redução de complexidade no componente principal e arquitetura escalável para novos módulos.',
     technologies: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Service Pattern'],
     imageUrl: partnerImg,
     links: {
@@ -57,7 +57,7 @@ export const PROJECTS = [
     id: 'real-estate-ai-agent',
     title: 'AI Real Estate Sales Agent',
     descriptionLong:
-      'Contexto: Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integração em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
+      'Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integração em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
     technologies: ['OpenAI', 'Whisper', 'n8n', 'CRM API', 'Sentiment Analysis', 'Automation'],
     imageUrl: realEstateAIImg,
     links: {
@@ -78,7 +78,7 @@ export const PROJECTS = [
     id: 'invoice-ocr-ia',
     title: 'Leitor de Notas (IA)',
     descriptionLong:
-    'Contexto: Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs em JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
+    'Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs em JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
     technologies: ['Gemini 2.0 Flash', 'OCR', 'JSON', 'Automação', 'IA aplicada'],
     imageUrl: ocrImg, // Imagem local atualizada
     links: {
@@ -89,7 +89,7 @@ export const PROJECTS = [
     id: 'fiscal-sentinel',
     title: 'Fiscal Sentinel',
     descriptionLong:
-      'Contexto: Monitoramento automatizado de obrigações fiscais e compliance. Engenharia: Scripts de validação contínua e integração de dados para auditoria em tempo real. Foco em integridade de dados e redução de falhas humanas operacionais. Resultado: Garantia de conformidade fiscal e automação de alertas de divergência.',
+      'Monitoramento automatizado de obrigações fiscais e compliance. Engenharia: Scripts de validação contínua e integração de dados para auditoria em tempo real. Foco em integridade de dados e redução de falhas humanas operacionais. Resultado: Garantia de conformidade fiscal e automação de alertas de divergência.',
     technologies: ['TypeScript', 'Node.js', 'Automação', 'Data Integrity', 'Compliance'],
     // Mantido Picsum até você gerar esta imagem específica
     imageUrl: sentinelImg,
