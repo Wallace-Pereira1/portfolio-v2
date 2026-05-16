@@ -99,7 +99,7 @@ export const PROJECTS = [
   },
   {
     id: 'bento-portfolio-v2',
-    title: 'Bento Portfolio v2',
+    title: 'Bento Portfolio',
     descriptionLong: 'Esta SPA construída com Vite, Tailwind v4 e Framer Motion.',
     technologies: ['React', 'TypeScript', 'Vite', 'Tailwind v4', 'Framer Motion'],
     imageUrl: 'https://picsum.photos/seed/bento/1280/720',
