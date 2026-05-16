@@ -110,7 +110,7 @@ export default function App() {
             }`}
           >
             <Grid size={16} />
-            Visão Geral
+            Geral
           </button>
           <button
             onClick={() => setCurrentTab('projects')}
