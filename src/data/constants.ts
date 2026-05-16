@@ -118,7 +118,7 @@ export const BENTO_CARDS = [
   },
   {
     id: "project-solargrid",
-    title: "Hub de Gestão de Parceiros e Feed Social",
+    title: "Hub de Parceiros e Feed",
     description: "Hub de parceiros e feed social com Service Layer, Supabase e RLS.",
     icon: Layout,
     size: "md",
