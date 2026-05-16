@@ -44,7 +44,7 @@ export const STACKS = [
 export const PROJECTS = [
   {
     id: 'partner-management-hub',
-    title: 'Hub de Parceiros e Feed Social',
+    title: 'Hub de Parceiros e Feed',
     descriptionLong:
       'Centralização de gestão de parceiros e feed social. Engenharia: Implementação de Service Layer Pattern em React/TypeScript para desacoplamento de lógica. Persistência de dados via Supabase (PostgreSQL) com segurança via Row-Level Security (RLS). Resultado: Redução de complexidade no componente principal e arquitetura escalável para novos módulos.',
     technologies: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Service Pattern'],
