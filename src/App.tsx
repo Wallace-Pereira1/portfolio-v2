@@ -128,7 +128,7 @@ export default function App() {
             }`}
           >
             <Layers size={16} />
-            Tech Stacks
+            Stacks
           </button>
         </nav>
 
