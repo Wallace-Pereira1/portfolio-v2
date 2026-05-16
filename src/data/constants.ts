@@ -44,7 +44,7 @@ export const STACKS = [
 export const PROJECTS = [
   {
     id: 'partner-management-hub',
-    title: 'Partner Management Hub & Social Feed',
+    title: 'Hub de Gestão de Parceiros e Feed Social',
     descriptionLong:
       'Centralização de gestão de parceiros e feed social. Engenharia: Implementação de Service Layer Pattern em React/TypeScript para desacoplamento de lógica. Persistência de dados via Supabase (PostgreSQL) com segurança via Row-Level Security (RLS). Resultado: Redução de complexidade no componente principal e arquitetura escalável para novos módulos.',
     technologies: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Service Pattern'],
@@ -55,7 +55,7 @@ export const PROJECTS = [
   },
   {
     id: 'real-estate-ai-agent',
-    title: 'AI Real Estate Sales Agent',
+    title: 'Agente de Vendas Imobiliário com IA',
     descriptionLong:
       'Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integração em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
     technologies: ['OpenAI', 'Whisper', 'n8n', 'CRM API', 'Sentiment Analysis', 'Automation'],
@@ -76,22 +76,22 @@ export const PROJECTS = [
   },
   {
     id: 'invoice-ocr-ia',
-    title: 'Leitor de Notas (IA)',
+    title: 'Leitor de Notas Fiscais',
     descriptionLong:
     'Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs em JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
     technologies: ['Gemini 2.0 Flash', 'OCR', 'JSON', 'Automação', 'IA aplicada'],
-    imageUrl: ocrImg, // Imagem local atualizada
+    imageUrl: ocrImg,
     links: {
       github: 'https://github.com/Wallace-Pereira1',
     },
   },
   {
     id: 'fiscal-sentinel',
-    title: 'Fiscal Sentinel',
+    title: 'Sentinela Fiscal',
     descriptionLong:
       'Monitoramento automatizado de obrigações fiscais e compliance. Engenharia: Scripts de validação contínua e integração de dados para auditoria em tempo real. Foco em integridade de dados e redução de falhas humanas operacionais. Resultado: Garantia de conformidade fiscal e automação de alertas de divergência.',
     technologies: ['TypeScript', 'Node.js', 'Automação', 'Data Integrity', 'Compliance'],
-    // Mantido Picsum até você gerar esta imagem específica
+    // Mantido Picsum até gerar capa
     imageUrl: sentinelImg,
     links: {
       github: 'https://github.com/Wallace-Pereira1/fiscal-sentinel',
@@ -99,7 +99,7 @@ export const PROJECTS = [
   },
   {
     id: 'bento-portfolio-v2',
-    title: 'Bento Portfolio',
+    title: 'Portfólio Bento',
     descriptionLong: 'Esta SPA construída com Vite, Tailwind v4 e Framer Motion.',
     technologies: ['React', 'TypeScript', 'Vite', 'Tailwind v4', 'Framer Motion'],
     imageUrl: 'https://picsum.photos/seed/bento/1280/720',
@@ -118,7 +118,7 @@ export const BENTO_CARDS = [
   },
   {
     id: "project-solargrid",
-    title: "Partner Management Hub & Social Feed",
+    title: "Hub de Gestão de Parceiros e Feed Social",
     description: "Hub de parceiros e feed social com Service Layer, Supabase e RLS.",
     icon: Layout,
     size: "md",
@@ -128,7 +128,7 @@ export const BENTO_CARDS = [
   },
   {
     id: "project-fiscal",
-    title: "Fiscal Sentinel",
+    title: "Sentinela Fiscal",
     description: "Validação contínua, auditoria em tempo real e alertas de divergência.",
     icon: Database,
     size: "md",
@@ -138,7 +138,7 @@ export const BENTO_CARDS = [
   },
   {
     id: "project-real-estate-ai",
-    title: "AI Real Estate Sales Agent",
+    title: "Agente de Vendas Imobiliário com IA",
     description: "Agente multimodal com OpenAI, Whisper e CRM para qualificação inteligente de leads.",
     icon: Bot,
     size: "md",
@@ -158,7 +158,7 @@ export const BENTO_CARDS = [
   },
   {
     id: "tech-stack",
-    title: "Tech Stack",
+    title: "Tecnologias",
     size: "sm",
     type: "stack"
   }
