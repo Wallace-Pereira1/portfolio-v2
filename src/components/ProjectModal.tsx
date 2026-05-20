@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowUpRight, X, Maximize2 } from 'lucide-react'
+import { ArrowUpRight, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 
 export type Project = {
@@ -7,7 +7,6 @@ export type Project = {
   title: string
   descriptionLong: string
   technologies: readonly string[]
-  imageUrl?: string
   links: {
     github?: string
     demo?: string
@@ -76,25 +75,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
             transition={{ duration: 0.18, ease: 'easeOut' }}
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Seção da Imagem com Gatilho de Zoom */}
-            {project.imageUrl && (
-              <div 
-                className="group relative mb-6 aspect-video overflow-hidden rounded-xl border border-white/10 bg-white/5 cursor-zoom-in"
-                onClick={() => setIsZoomed(true)}
-              >
-                <img
-                  src={project.imageUrl}
-                  alt={`Print do projeto ${project.title}`}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                />
-                {/* Overlay visual de hover */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100">
-                  <Maximize2 className="mb-2 text-white" size={24} />
-                  <span className="text-xs font-medium text-white uppercase tracking-wider">Clique para expandir</span>
-                </div>
-              </div>
-            )}
+
 
             <div className="flex items-start justify-between gap-6">
               <div className="min-w-0">
@@ -137,15 +118,6 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
             </div>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
-                href={project.links.github}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <ArrowUpRight size={16} />
-                GitHub
-              </a>
               {project.links.github && (
                 <a
                   className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
@@ -171,41 +143,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
             </div>
           </motion.div>
 
-          {/* LIGHTBOX (Imagem Expandida) */}
-          <AnimatePresence>
-            {isZoomed && project.imageUrl && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-[60] flex items-center justify-center bg-[#050a15]/fb backdrop-blur-xl p-4 md:p-12 cursor-zoom-out"
-                onClick={() => setIsZoomed(false)}
-              >
-                <motion.div
-                  initial={{ scale: 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  exit={{ scale: 0.9, opacity: 0 }}
-                  transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-                  className="relative max-w-7xl max-h-full"
-                  onClick={(e) => e.stopPropagation()}
-                >
-                  <img
-                    src={project.imageUrl}
-                    className="h-auto max-h-[90vh] w-auto rounded-lg shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-white/10"
-                    alt={project.title}
-                  />
-                  
-                  {/* Botão de Fechar flutuante no Lightbox */}
-                  <button 
-                    className="absolute -top-12 right-0 md:-right-12 p-2 text-white/70 hover:text-white transition-colors"
-                    onClick={() => setIsZoomed(false)}
-                  >
-                    <X size={32} />
-                  </button>
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+
         </motion.div>
       ) : null}
     </AnimatePresence>

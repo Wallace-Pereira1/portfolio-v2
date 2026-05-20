@@ -5,7 +5,7 @@ import {
   Terminal
 } from 'lucide-react';
 
-// Importações das imagens locais
+// Importações das imagens locais (Mantidas para referência, mas não usadas nos cards)
 import partnerImg from '../assets/partner-management-hub.png';
 import ocrImg from '../assets/invoice-ocr-ia.png';
 import sentinelImg from "../assets/fiscal-sentinel.png";
@@ -50,7 +50,8 @@ export const PROJECTS = [
     technologies: ['React', 'TypeScript', 'Supabase', 'PostgreSQL', 'RLS', 'Service Pattern'],
     imageUrl: partnerImg,
     links: {
-      github: 'https://github.com/Wallace-Pereira1/solargrid-app.git',
+      github: 'https://github.com/Wallace-Pereira1/hub-parceiros',
+      demo: 'https://hub-parceiros-zeta.vercel.app/',
     },
   },
   {
