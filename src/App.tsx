@@ -129,7 +129,7 @@ export default function App() {
             </div>
           </div>
           <p className="text-secondary max-w-2xl">
-            {currentInfo.education} • {currentInfo.location}
+            {currentInfo.education}
           </p>
         </header>
 
