@@ -137,15 +137,16 @@ export default function App() {
         {currentTab === 'home' && (
           <section className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
           {BENTO_CARDS.map((card) => {
-            // ... (logica de colSpan mantida)
+            // AJUSTE CIRÚRGICO DE LAYOUT BENTO GRID
+            // Invertemos a validação do ID: o Agente Imobiliário assume o grid proporcional do Fiscal
             const colSpan =
               card.size === 'lg'
                 ? 'col-span-1 md:col-span-7 lg:col-span-7 md:row-span-2 lg:row-span-2'
                 : card.id === 'project-solargrid'
                   ? 'col-span-1 md:col-span-5 lg:col-span-5'
-                  : card.id === 'project-fiscal'
+                  : card.id === 'project-real-estate-ai' // O Agente de Vendas assume o espaço principal md:col-span-6 lg:col-span-5
                     ? 'col-span-1 md:col-span-6 lg:col-span-5'
-                    : card.id === 'project-ocr' || card.id === 'project-real-estate-ai'
+                    : card.id === 'project-ocr' || card.id === 'project-fiscal' // Sentinela Fiscal e Leitor OCR dividem colunas iguais
                       ? 'col-span-1 md:col-span-6 lg:col-span-6'
                       : 'col-span-1 md:col-span-6 lg:col-span-5'
 
@@ -315,70 +316,70 @@ export default function App() {
             )
           })}
         </section>
-      )}
+        )}
 
-      {/* PÁGINA: TODOS OS PROJETOS */}
-      {currentTab === 'projects' && (
-        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {PROJECTS.map((project) => (
-            <motion.div
-              key={project.id}
-              className="col-span-1"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <BentoCard
-                title={project.title}
-                description={
-                  project.descriptionLong.length > 120
-                    ? project.descriptionLong.substring(0, 120) + '...'
-                    : project.descriptionLong
-                }
-                tag="Projeto"
-                icon={FolderGit2}
-                className="h-full min-h-[220px] cursor-pointer transition-colors"
-                onClick={() => setSelectedProjectId(project.id)}
-              />
-            </motion.div>
-          ))}
-        </section>
-      )}
+        {/* PÁGINA: TODOS OS PROJETOS */}
+        {currentTab === 'projects' && (
+          <section className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROJECTS.map((project) => (
+              <motion.div
+                key={project.id}
+                className="col-span-1"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <BentoCard
+                  title={project.title}
+                  description={
+                    project.descriptionLong.length > 120
+                      ? project.descriptionLong.substring(0, 120) + '...'
+                      : project.descriptionLong
+                  }
+                  tag="Projeto"
+                  icon={FolderGit2}
+                  className="h-full min-h-[220px] cursor-pointer transition-colors"
+                  onClick={() => setSelectedProjectId(project.id)}
+                />
+              </motion.div>
+            ))}
+          </section>
+        )}
 
-      {/* PÁGINA: MINHAS STACKS */}
-      {currentTab === 'stacks' && (
-        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {STACKS.map((group) => (
-            <motion.div
-              key={group.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-              whileHover={{ y: -5 }}
-              className="glass-card p-8 flex flex-col gap-6 group transition-colors hover:bg-white/10"
-            >
-              <div className="flex items-center gap-4 text-gold-500 border-b border-white/10 pb-4">
-                <group.icon size={28} />
-                <h2 className="text-xl font-bold tracking-wider uppercase">{group.name}</h2>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                {group.items.map((item) => (
-                  <motion.span
-                    key={item}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:bg-white/10 transition-all cursor-default"
-                  >
-                    <StackIcon name={item} />
-                    {item}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
-        </section>
-      )}
+        {/* PÁGINA: MINHAS STACKS */}
+        {currentTab === 'stacks' && (
+          <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {STACKS.map((group) => (
+              <motion.div
+                key={group.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+                whileHover={{ y: -5 }}
+                className="glass-card p-8 flex flex-col gap-6 group transition-colors hover:bg-white/10"
+              >
+                <div className="flex items-center gap-4 text-gold-500 border-b border-white/10 pb-4">
+                  <group.icon size={28} />
+                  <h2 className="text-xl font-bold tracking-wider uppercase">{group.name}</h2>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  {group.items.map((item) => (
+                    <motion.span
+                      key={item}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:bg-white/10 transition-all cursor-default"
+                    >
+                      <StackIcon name={item} />
+                      {item}
+                    </motion.span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </section>
+        )}
       </div>
 
       <ProjectModal

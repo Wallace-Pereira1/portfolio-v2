@@ -5,7 +5,7 @@ import {
   Terminal
 } from 'lucide-react';
 
-// Importações das imagens locais (Mantidas para referência, mas não usadas nos cards)
+// Importações das imagens locais
 import partnerImg from '../assets/partner-management-hub.png';
 import ocrImg from '../assets/invoice-ocr-ia.png';
 import sentinelImg from "../assets/fiscal-sentinel.png";
@@ -58,7 +58,7 @@ export const PROJECTS = [
     id: 'real-estate-ai-agent',
     title: 'Agente de Vendas Imobiliário com IA',
     descriptionLong:
-      'Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integração em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
+      'Automação inteligente para qualificação de leads imobiliários. Engenharia: Pipeline multimodal com processamento de áudio via Whisper, interpretação contextual utilizando LLMs da OpenAI e integration em tempo real com CRM imobiliário. Implementação de análise de sentimento para detecção de atrito e roteamento automatizado para atendimento humano. Resultado: Redução no tempo de qualificação, automação de agendamentos e aumento da eficiência operacional no funil comercial.',
     technologies: ['OpenAI', 'Whisper', 'n8n', 'CRM API', 'Sentiment Analysis', 'Automation'],
     imageUrl: realEstateAIImg,
     links: {
@@ -79,7 +79,7 @@ export const PROJECTS = [
     id: 'invoice-ocr-ia',
     title: 'Leitor de Notas Fiscais',
     descriptionLong:
-    'Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs em JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
+    'Extração inteligente de dados em documentos não estruturados. Engenharia: Pipeline de processamento utilizando Gemini 2.0 Flash e visão computacional. Conversão de documentos físicos/PDFs in JSON estruturado de alta fidelidade. Resultado: Otimização drástica no fluxo de entrada de dados, eliminando digitação manual com 99% de precisão.',
     technologies: ['Gemini 2.0 Flash', 'OCR', 'JSON', 'Automação', 'IA aplicada'],
     imageUrl: ocrImg,
     links: {
@@ -92,7 +92,6 @@ export const PROJECTS = [
     descriptionLong:
       'Monitoramento automatizado de obrigações fiscais e compliance. Engenharia: Scripts de validação contínua e integração de dados para auditoria em tempo real. Foco em integridade de dados e redução de falhas humanas operacionais. Resultado: Garantia de conformidade fiscal e automação de alertas de divergência.',
     technologies: ['TypeScript', 'Node.js', 'Automação', 'Data Integrity', 'Compliance'],
-    // Mantido Picsum até gerar capa
     imageUrl: sentinelImg,
     links: {
       github: 'https://github.com/Wallace-Pereira1/fiscal-sentinel',
@@ -128,16 +127,6 @@ export const BENTO_CARDS = [
     projectId: "partner-management-hub"
   },
   {
-    id: "project-fiscal",
-    title: "Sentinela Fiscal",
-    description: "Validação contínua, auditoria em tempo real e alertas de divergência.",
-    icon: Database,
-    size: "md",
-    tag: "Projeto",
-    type: "project",
-    projectId: "fiscal-sentinel"
-  },
-  {
     id: "project-real-estate-ai",
     title: "Agente de Vendas Imobiliário com IA",
     description: "Agente multimodal com OpenAI, Whisper e CRM para qualificação inteligente de leads.",
@@ -146,6 +135,16 @@ export const BENTO_CARDS = [
     tag: "Projeto Corporativo",
     type: "project",
     projectId: "real-estate-ai-agent"
+  },
+  {
+    id: "project-fiscal",
+    title: "Sentinela Fiscal",
+    description: "Validação contínua, auditoria em tempo real e alertas de divergência.",
+    icon: Database,
+    size: "md",
+    tag: "Projeto",
+    type: "project",
+    projectId: "fiscal-sentinel"
   },
   {
     id: "project-ocr",
