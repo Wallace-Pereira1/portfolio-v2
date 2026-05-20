@@ -18,7 +18,7 @@
 
 ## 📸 Visão Geral
 
-Portfólio pessoal de **Wallace Pereira**, Fullstack Software Engineer especializado em automação inteligente e arquiteturas escaláveis com IA. A interface foi construída com um layout **Bento Grid** responsivo, estética de **glassmorphism** e transições animadas via Framer Motion — entregando uma experiência visual moderna e performática.
+Portfólio pessoal, Fullstack Software Engineer especializado em automação inteligente e arquiteturas escaláveis com IA. A interface foi construída com um layout **Bento Grid** responsivo, estética de **glassmorphism** e transições animadas via Framer Motion — entregando uma experiência visual moderna e performática.
 
 ---
 
