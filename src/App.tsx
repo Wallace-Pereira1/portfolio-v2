@@ -151,7 +151,7 @@ export default function App() {
             if (card.type === 'profile') {
               return (
                 <div key={card.id} className={`${colSpan}`}>
-                  <div className="glass-card h-full p-8 md:p-10 flex flex-col justify-between">
+                  <div className="glass-card h-full p-8 md:p-10 pb-12 md:pb-14 flex flex-col justify-between">
                     <div className="space-y-4">
                       <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
                         {card.title}

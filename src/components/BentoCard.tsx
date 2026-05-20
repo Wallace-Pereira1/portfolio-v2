@@ -34,7 +34,7 @@ export function BentoCard({ title, subtitle, description, icon: Icon, tag, class
             }
           : undefined
       }
-      className={`glass-card p-8 md:p-10 flex flex-col justify-between group transition-colors hover:bg-white/10 ${onClick ? 'cursor-pointer' : 'cursor-default'} ${className}`}
+      className={`glass-card p-8 md:p-10 pb-12 md:pb-14 flex flex-col justify-between group transition-colors hover:bg-white/10 ${onClick ? 'cursor-pointer' : 'cursor-default'} ${className}`}
     >
       <div>
         <div className="flex justify-between items-start">
