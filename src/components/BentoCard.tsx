@@ -21,7 +21,6 @@ export function BentoCard({ title, subtitle, description, icon: Icon, tag, class
       whileHover={{
         y: -5,
         scale: 1.02,
-        boxShadow: '0 28px 90px rgba(225, 177, 44, 0.10)',
       }}
       whileTap={onClick ? { scale: 0.985 } : undefined}
       onClick={onClick}

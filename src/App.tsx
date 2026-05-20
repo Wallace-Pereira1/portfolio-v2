@@ -161,7 +161,6 @@ export default function App() {
                   whileHover={{
                     y: -5,
                     scale: 1.01,
-                    boxShadow: '0 28px 90px rgba(225, 177, 44, 0.05)',
                   }}
                 >
                   <div className="glass-card h-full p-8 md:p-10 pb-12 md:pb-14 flex flex-col justify-between group transition-colors hover:bg-white/10">
@@ -262,7 +261,6 @@ export default function App() {
                   whileHover={{
                     y: -5,
                     scale: 1.02,
-                    boxShadow: '0 28px 90px rgba(225, 177, 44, 0.05)',
                   }}
                 >
                   <div className="glass-card h-full p-8 md:p-10 flex flex-col justify-between group transition-colors hover:bg-white/10">
@@ -273,7 +271,7 @@ export default function App() {
                       <div className="mt-6 flex flex-wrap gap-3">
                         {STACKS.slice(0, 8).map((stack) => (
                           stack.items.slice(0, 1).map(item => (
-                            <span key={item} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-slate-200 group-hover:border-gold-500/30 transition-colors">
+                            <span key={item} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-slate-200 transition-colors">
                               <StackIcon name={item} />
                               {item}
                             </span>
@@ -340,7 +338,7 @@ export default function App() {
                 }
                 tag="Projeto"
                 icon={FolderGit2}
-                className="h-full min-h-[220px] cursor-pointer hover:border-gold-500/50 transition-colors"
+                className="h-full min-h-[220px] cursor-pointer transition-colors"
                 onClick={() => setSelectedProjectId(project.id)}
               />
             </motion.div>
@@ -370,7 +368,7 @@ export default function App() {
                   <motion.span
                     key={item}
                     whileHover={{ scale: 1.05, y: -2 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:border-gold-500/50 hover:bg-gold-500/10 transition-all cursor-default"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:bg-white/10 transition-all cursor-default"
                   >
                     <StackIcon name={item} />
                     {item}
