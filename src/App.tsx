@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
 import { BentoCard } from './components/BentoCard'
 import { ProjectModal } from './components/ProjectModal'
 import { ResumeModal } from './components/ResumeModal' // Importe o novo componente
@@ -135,7 +136,7 @@ export default function App() {
         {/* PÁGINA: VISÃO GERAL (HOME) */}
         {currentTab === 'home' && (
           <section className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
-          {BENTO_CARDS.filter(card => card.type !== 'stack').map((card) => {
+          {BENTO_CARDS.map((card) => {
             // ... (logica de colSpan mantida)
             const colSpan =
               card.size === 'lg'
@@ -150,8 +151,20 @@ export default function App() {
 
             if (card.type === 'profile') {
               return (
-                <div key={card.id} className={`${colSpan}`}>
-                  <div className="glass-card h-full p-8 md:p-10 pb-12 md:pb-14 flex flex-col justify-between">
+                <motion.div
+                  key={card.id}
+                  className={`${colSpan}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  whileHover={{
+                    y: -5,
+                    scale: 1.01,
+                    boxShadow: '0 28px 90px rgba(225, 177, 44, 0.05)',
+                  }}
+                >
+                  <div className="glass-card h-full p-8 md:p-10 pb-12 md:pb-14 flex flex-col justify-between group transition-colors hover:bg-white/10">
                     <div className="space-y-4">
                       <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
                         {card.title}
@@ -233,12 +246,58 @@ export default function App() {
                       </div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
+              )
+            }
+
+            if (card.type === 'stack') {
+              return (
+                <motion.div
+                  key={card.id}
+                  className={`${colSpan}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  whileHover={{
+                    y: -5,
+                    scale: 1.02,
+                    boxShadow: '0 28px 90px rgba(225, 177, 44, 0.05)',
+                  }}
+                >
+                  <div className="glass-card h-full p-8 md:p-10 flex flex-col justify-between group transition-colors hover:bg-white/10">
+                    <div>
+                      <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
+                        {card.title}
+                      </p>
+                      <div className="mt-6 flex flex-wrap gap-3">
+                        {STACKS.slice(0, 8).map((stack) => (
+                          stack.items.slice(0, 1).map(item => (
+                            <span key={item} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-slate-200 group-hover:border-gold-500/30 transition-colors">
+                              <StackIcon name={item} />
+                              {item}
+                            </span>
+                          ))
+                        ))}
+                        <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest self-center ml-1">
+                          + {STACKS.reduce((acc, s) => acc + s.items.length, 0) - 8} tecnologias
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
               )
             }
 
             return (
-              <div key={card.id} className={colSpan}>
+              <motion.div
+                key={card.id}
+                className={colSpan}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
                 <BentoCard
                   title={card.title}
                   subtitle={'subtitle' in card && typeof card.subtitle === 'string' ? card.subtitle : undefined}
@@ -254,7 +313,7 @@ export default function App() {
                       : undefined
                   }
                 />
-              </div>
+              </motion.div>
             )
           })}
         </section>
@@ -264,7 +323,14 @@ export default function App() {
       {currentTab === 'projects' && (
         <section className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {PROJECTS.map((project) => (
-            <div key={project.id} className="col-span-1">
+            <motion.div
+              key={project.id}
+              className="col-span-1"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+            >
               <BentoCard
                 title={project.title}
                 description={
@@ -277,7 +343,7 @@ export default function App() {
                 className="h-full min-h-[220px] cursor-pointer hover:border-gold-500/50 transition-colors"
                 onClick={() => setSelectedProjectId(project.id)}
               />
-            </div>
+            </motion.div>
           ))}
         </section>
       )}
@@ -286,20 +352,32 @@ export default function App() {
       {currentTab === 'stacks' && (
         <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
           {STACKS.map((group) => (
-            <div key={group.name} className="glass-card p-8 flex flex-col gap-6">
+            <motion.div
+              key={group.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              whileHover={{ y: -5 }}
+              className="glass-card p-8 flex flex-col gap-6 group transition-colors hover:bg-white/10"
+            >
               <div className="flex items-center gap-4 text-gold-500 border-b border-white/10 pb-4">
                 <group.icon size={28} />
                 <h2 className="text-xl font-bold tracking-wider uppercase">{group.name}</h2>
               </div>
               <div className="flex flex-wrap gap-3">
                 {group.items.map((item) => (
-                  <span key={item} className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:border-gold-500/50 hover:bg-gold-500/10 transition-colors cursor-default">
+                  <motion.span
+                    key={item}
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:border-gold-500/50 hover:bg-gold-500/10 transition-all cursor-default"
+                  >
                     <StackIcon name={item} />
                     {item}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           ))}
         </section>
       )}

@@ -155,11 +155,5 @@ export const BENTO_CARDS = [
     tag: "Projeto",
     type: "project",
     projectId: "invoice-ocr-ia"
-  },
-  {
-    id: "tech-stack",
-    title: "Tecnologias",
-    size: "sm",
-    type: "stack"
   }
 ];
