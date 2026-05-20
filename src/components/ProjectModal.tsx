@@ -60,7 +60,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
         >
           {/* Overlay de fundo */}
           <motion.div
-            className="absolute inset-0 bg-[#050a15]/90 backdrop-blur-md"
+            className="absolute inset-0 bg-navy-900/90 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -90,26 +90,26 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
               <button
                 type="button"
                 onClick={onClose}
-                className="inline-flex flex-shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
+                className="inline-flex flex-shrink-0 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-primary transition-all hover:bg-white/10 hover:border-white/20"
               >
                 <X size={16} className="shrink-0" />
                 Fechar
               </button>
             </div>
 
-            <p className="mt-6 text-slate-200/85 leading-relaxed">
+            <p className="mt-6 text-primary/85 leading-relaxed">
               {project.descriptionLong}
             </p>
 
             <div className="mt-8">
-              <p className="text-xs font-extrabold tracking-[0.22em] uppercase text-slate-200/80">
+              <p className="text-xs font-extrabold tracking-[0.22em] uppercase text-secondary">
                 Tech Stack
               </p>
               <div className="mt-3 flex flex-wrap gap-2">
                 {project.technologies.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-slate-100"
+                    className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-semibold text-primary"
                   >
                     {tech}
                   </span>
@@ -120,7 +120,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
             <div className="mt-8 flex flex-wrap gap-3">
               {project.links.github && (
                 <a
-                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
+                  className="inline-flex items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-primary transition-all hover:bg-white/10 hover:border-white/20"
                   href={project.links.github}
                   target="_blank"
                   rel="noreferrer"

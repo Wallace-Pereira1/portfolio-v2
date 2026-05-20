@@ -43,18 +43,18 @@ export function BentoCard({ title, subtitle, description, icon: Icon, tag, class
             </div>
           )}
           {tag && (
-            <span className="text-[10px] uppercase tracking-widest text-slate-500 font-bold border border-white/5 px-2 py-1 rounded">
+            <span className="text-[10px] uppercase tracking-widest text-secondary/60 font-bold border border-white/5 px-2 py-1 rounded">
               {tag}
             </span>
           )}
         </div>
 
         <div className="mt-4">
-          <h3 className="text-xl font-bold text-white group-hover:text-gold-500 transition-colors">
+          <h3 className="text-xl font-bold text-primary group-hover:text-gold-500 transition-colors">
             {title}
           </h3>
           {subtitle && <p className="text-gold-500/80 text-sm font-medium mt-1">{subtitle}</p>}
-          {description && <p className="text-slate-200/80 text-sm mt-2 leading-relaxed">{description}</p>}
+          {description && <p className="text-secondary text-sm mt-2 leading-relaxed">{description}</p>}
         </div>
       </div>
     </motion.div>

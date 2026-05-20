@@ -1,10 +1,10 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import { BentoCard } from './components/BentoCard'
 import { ProjectModal } from './components/ProjectModal'
-import { ResumeModal } from './components/ResumeModal' // Importe o novo componente
-import { BENTO_CARDS, INFO, PROJECTS, STACKS } from './data/constants'
-import { FileText, Grid, FolderGit2, Layers, Mail } from 'lucide-react'
+import { ResumeModal } from './components/ResumeModal'
+import { BENTO_CARDS, INFO, PROJECTS, STACKS, UI_TEXT } from './data/constants'
+import { FileText, Grid, FolderGit2, Layers, Mail, Sun, Moon } from 'lucide-react'
 import meImg from './assets/me.jpg'
 import {
   SiTypescript, SiJavascript, SiPython, SiCplusplus, SiPhp,
@@ -69,74 +69,121 @@ type Tab = 'home' | 'projects' | 'stacks';
 
 export default function App() {
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(null)
-  const [isResumeOpen, setIsResumeOpen] = useState(false) // Estado para o Currículo
-  const [currentTab, setCurrentTab] = useState<Tab>('home') // Estado de abas
+  const [isResumeOpen, setIsResumeOpen] = useState(false)
+  const [currentTab, setCurrentTab] = useState<Tab>('home')
+  const [language, setLanguage] = useState<'PT' | 'EN'>('PT')
+  const [isDarkMode, setIsDarkMode] = useState(true)
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark')
+    } else {
+      document.documentElement.classList.remove('dark')
+    }
+  }, [isDarkMode])
 
   const selectedProject = useMemo(
-    () => PROJECTS.find((p) => p.id === selectedProjectId) ?? null,
-    [selectedProjectId],
+    () => PROJECTS[language].find((p) => p.id === selectedProjectId) ?? null,
+    [selectedProjectId, language],
   )
 
+  const currentInfo = INFO[language]
+  const currentBentoCards = BENTO_CARDS[language]
+  const currentStacks = STACKS[language]
+  const currentUIText = UI_TEXT[language]
+
   return (
-    <main className="min-h-screen bg-navy-900 text-slate-200">
+    <main className="min-h-screen">
       <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
-        <header className="flex flex-col items-start gap-3">
+        <header className="relative flex flex-col items-start gap-3">
+          {/* Mobile Selectors */}
+          <div className="absolute top-6 right-4 flex md:hidden gap-2 items-center z-50">
+            <button
+              onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
+              className="px-3 py-1.5 text-xs font-bold rounded-full bg-primary/5 border border-primary/10 text-slate-300 transition-all hover:bg-white/10"
+            >
+              {language === 'PT' ? 'EN' : 'PT'}
+            </button>
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:text-gold-500"
+            >
+              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
+
           <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
-            Portfólio • v2.0
+            {currentUIText.header.version}
           </p>
           <div className="flex flex-row items-center">
             <img
               src={meImg}
-              alt={`Foto de ${INFO.name}`}
+              alt={`Foto de ${currentInfo.name}`}
               className="mr-4 md:mr-6 w-16 h-16 md:w-20 md:h-20 rounded-full border border-gold-500/50 object-cover"
             />
             <div className="flex flex-col">
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-white">
-                {INFO.name}
+              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-primary">
+                {currentInfo.name}
               </h1>
-              <p className="text-gold-500/90 font-medium leading-tight">{INFO.title}</p>
+              <p className="text-gold-500/90 font-medium leading-tight">{currentInfo.title}</p>
             </div>
           </div>
-          <p className="text-slate-200/80 max-w-2xl">
-            {INFO.education} • {INFO.location}
+          <p className="text-secondary max-w-2xl">
+            {currentInfo.education} • {currentInfo.location}
           </p>
         </header>
 
         {/* Barra de Navegação */}
-        <nav className="mt-10 flex flex-wrap items-center gap-2 p-1.5 bg-white/5 rounded-full border border-white/10 w-fit">
+        <nav className="mt-10 flex flex-wrap items-center gap-2 p-1.5 bg-primary/5 rounded-full border border-primary/10 w-fit">
           <button
             onClick={() => setCurrentTab('home')}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              currentTab === 'home' ? 'bg-gold-500/20 text-gold-500' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+              currentTab === 'home' ? 'bg-gold-500/20 text-gold-500' : 'text-secondary hover:text-primary hover:bg-primary/5'
             }`}
           >
             <Grid size={16} />
-            Geral
+            {currentUIText.tabs.home}
           </button>
           <button
             onClick={() => setCurrentTab('projects')}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              currentTab === 'projects' ? 'bg-gold-500/20 text-gold-500' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+              currentTab === 'projects' ? 'bg-gold-500/20 text-gold-500' : 'text-secondary hover:text-primary hover:bg-primary/5'
             }`}
           >
             <FolderGit2 size={16} />
-            Projetos
+            {currentUIText.tabs.projects}
           </button>
           <button
             onClick={() => setCurrentTab('stacks')}
             className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              currentTab === 'stacks' ? 'bg-gold-500/20 text-gold-500' : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+              currentTab === 'stacks' ? 'bg-gold-500/20 text-gold-500' : 'text-secondary hover:text-primary hover:bg-primary/5'
             }`}
           >
             <Layers size={16} />
-            Stacks
+            {currentUIText.tabs.stacks}
           </button>
+
+          {/* Desktop Selectors */}
+          <div className="border-l border-primary/10 pl-2 ml-2 hidden md:flex gap-2 items-center">
+            <button
+              onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
+              className="px-3 py-1.5 text-xs font-bold rounded-full bg-primary/5 border border-primary/10 text-slate-300 transition-all hover:bg-white/10"
+            >
+              {language === 'PT' ? 'EN' : 'PT'}
+            </button>
+            <button
+              onClick={() => setIsDarkMode(!isDarkMode)}
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:text-gold-500"
+            >
+              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+          </div>
         </nav>
 
         {/* PÁGINA: VISÃO GERAL (HOME) */}
         {currentTab === 'home' && (
           <section className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
-          {BENTO_CARDS.map((card) => {
+          {currentBentoCards.map((card) => {
             // AJUSTE CIRÚRGICO DE LAYOUT BENTO GRID
             // Invertemos a validação do ID: o Agente Imobiliário assume o grid proporcional do Fiscal
             const colSpan =
@@ -169,12 +216,11 @@ export default function App() {
                       <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
                         {card.title}
                       </p>
-                      <p className="text-slate-200/85 text-base md:text-lg leading-relaxed max-w-xl">
-                        Engenheiro de Software focado em transformar dados brutos em inteligência operacional.
-                        Especialista em arquiteturas escaláveis e automação de processos complexos com IA.
+                      <p className="text-primary/85 text-base md:text-lg leading-relaxed max-w-xl">
+                        {currentInfo.description}
                       </p>
 
-                      <div className="pt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-slate-200/70">
+                      <div className="pt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-secondary/70">
                         <span className="inline-flex items-center gap-2">
                           <span className="h-1.5 w-1.5 rounded-full bg-gold-500/70" />
                           Fluxos de IA Autônomos
@@ -193,22 +239,22 @@ export default function App() {
                     <div className="pt-6 flex flex-wrap items-center justify-between gap-4">
                       <button
                         type="button"
-                        className="inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
+                        className="inline-flex items-center gap-3 rounded-full border border-primary/10 bg-primary/5 px-5 py-3 text-sm font-semibold text-primary transition-all hover:bg-white/10 hover:border-white/20"
                       >
                         <span className="relative flex h-2.5 w-2.5">
                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
                           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
                         </span>
-                        Disponível para projetos
+                        {currentInfo.status}
                       </button>
 
                       <div className="flex items-center gap-2">
                         {/* Botão Currículo */}
                         <button
                           onClick={() => setIsResumeOpen(true)}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition-all hover:bg-white/10 hover:border-white/20 hover:text-gold-500"
-                          aria-label="Ver Currículo"
-                          title="Ver Currículo"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20 hover:text-gold-500"
+                          aria-label={currentInfo.resume}
+                          title={currentInfo.resume}
                         >
                           <FileText size={18} />
                         </button>
@@ -216,7 +262,7 @@ export default function App() {
                         {/* Botão E-mail */}
                         <a
                           href="mailto:wallacepereira@proton.me"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition-all hover:bg-white/10 hover:border-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20 hover:text-gold-500"
                           aria-label="Email"
                           title="Email"
                         >
@@ -227,7 +273,7 @@ export default function App() {
                           href="https://github.com/Wallace-Pereira1"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20"
                           aria-label="GitHub"
                           title="GitHub"
                         >
@@ -237,7 +283,7 @@ export default function App() {
                           href="https://www.linkedin.com/in/wallacepereira-in/"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-slate-100 transition-all hover:bg-white/10 hover:border-white/20"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20"
                           aria-label="LinkedIn"
                           title="LinkedIn"
                         >
@@ -250,43 +296,7 @@ export default function App() {
               )
             }
 
-            if (card.type === 'stack') {
-              return (
-                <motion.div
-                  key={card.id}
-                  className={`${colSpan}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  whileHover={{
-                    y: -5,
-                    scale: 1.02,
-                  }}
-                >
-                  <div className="glass-card h-full p-8 md:p-10 flex flex-col justify-between group transition-colors hover:bg-white/10">
-                    <div>
-                      <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
-                        {card.title}
-                      </p>
-                      <div className="mt-6 flex flex-wrap gap-3">
-                        {STACKS.slice(0, 8).map((stack) => (
-                          stack.items.slice(0, 1).map(item => (
-                            <span key={item} className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/10 rounded-lg text-xs font-medium text-slate-200 transition-colors">
-                              <StackIcon name={item} />
-                              {item}
-                            </span>
-                          ))
-                        ))}
-                        <span className="text-[10px] text-slate-500 font-bold uppercase tracking-widest self-center ml-1">
-                          + {STACKS.reduce((acc, s) => acc + s.items.length, 0) - 8} tecnologias
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-              )
-            }
+
 
             return (
               <motion.div
@@ -318,10 +328,10 @@ export default function App() {
         </section>
         )}
 
-        {/* PÁGINA: TODOS OS PROJETOS */}
-        {currentTab === 'projects' && (
-          <section className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {PROJECTS.map((project) => (
+      {/* PÁGINA: TODOS OS PROJETOS */}
+      {currentTab === 'projects' && (
+        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {PROJECTS[language].map((project: any) => (
               <motion.div
                 key={project.id}
                 className="col-span-1"
@@ -337,9 +347,9 @@ export default function App() {
                       ? project.descriptionLong.substring(0, 120) + '...'
                       : project.descriptionLong
                   }
-                  tag="Projeto"
-                  icon={FolderGit2}
-                  className="h-full min-h-[220px] cursor-pointer transition-colors"
+                tag={currentUIText.projects.tag}
+                icon={FolderGit2}
+                className="h-full min-h-[220px] cursor-pointer transition-colors"
                   onClick={() => setSelectedProjectId(project.id)}
                 />
               </motion.div>
@@ -347,10 +357,10 @@ export default function App() {
           </section>
         )}
 
-        {/* PÁGINA: MINHAS STACKS */}
-        {currentTab === 'stacks' && (
-          <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            {STACKS.map((group) => (
+      {/* PÁGINA: MINHAS STACKS */}
+      {currentTab === 'stacks' && (
+        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+          {currentStacks.map((group: any) => (
               <motion.div
                 key={group.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -360,7 +370,7 @@ export default function App() {
                 whileHover={{ y: -5 }}
                 className="glass-card p-8 flex flex-col gap-6 group transition-colors hover:bg-white/10"
               >
-                <div className="flex items-center gap-4 text-gold-500 border-b border-white/10 pb-4">
+                <div className="flex items-center gap-4 text-gold-500 border-b border-primary/10 pb-4">
                   <group.icon size={28} />
                   <h2 className="text-xl font-bold tracking-wider uppercase">{group.name}</h2>
                 </div>
@@ -369,7 +379,7 @@ export default function App() {
                     <motion.span
                       key={item}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-sm font-medium text-slate-200 hover:bg-white/10 transition-all cursor-default"
+                      className="flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-lg text-sm font-medium text-primary hover:bg-white/10 transition-all cursor-default"
                     >
                       <StackIcon name={item} />
                       {item}
