@@ -100,13 +100,13 @@ export default function App() {
           <div className="absolute top-6 right-4 flex md:hidden gap-2 items-center z-50">
             <button
               onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
-              className="px-3 py-1.5 text-xs font-bold rounded-full bg-primary/5 border border-primary/10 text-slate-300 transition-all hover:bg-white/10"
+              className="px-3 py-1.5 text-xs font-bold rounded-full bg-white/5 border border-transparent text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-primary"
             >
               {language === 'PT' ? 'EN' : 'PT'}
             </button>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:text-gold-500"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-white/5 text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-gold-500"
             >
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
@@ -164,16 +164,16 @@ export default function App() {
           </button>
 
           {/* Desktop Selectors */}
-          <div className="border-l border-primary/10 pl-2 ml-2 hidden md:flex gap-2 items-center">
+          <div className="border-l border-white/10 pl-2 ml-2 hidden md:flex gap-2 items-center">
             <button
               onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
-              className="px-3 py-1.5 text-xs font-bold rounded-full bg-primary/5 border border-primary/10 text-slate-300 transition-all hover:bg-white/10"
+              className="px-3 py-1.5 text-xs font-bold rounded-full bg-white/5 border border-transparent text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-primary"
             >
               {language === 'PT' ? 'EN' : 'PT'}
             </button>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:text-gold-500"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-white/5 text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-gold-500"
             >
               {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
             </button>
