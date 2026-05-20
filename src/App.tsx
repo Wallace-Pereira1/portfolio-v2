@@ -375,7 +375,8 @@ export default function App() {
                   <h2 className="text-xl font-bold tracking-wider uppercase">{group.name}</h2>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  {group.items.map((item) => (
+                  {/* ADICIONADO EXPLICITAMENTE O TIPO (item: string) ABAIXO PARA ENCERRA O ERRO TS7006 */}
+                  {group.items.map((item: string) => (
                     <motion.span
                       key={item}
                       whileHover={{ scale: 1.05, y: -2 }}
