@@ -397,6 +397,7 @@ export default function App() {
         )}
       </div>
 
+      {/* Certifique-se de que o fechamento do ProjectModal está limpo como abaixo */}
       <ProjectModal
         open={selectedProjectId !== null}
         project={selectedProject}
