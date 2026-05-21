@@ -1,101 +1,66 @@
 @import 'tailwindcss';
 
+/* 1. Definição de Variáveis para o Motor do Tailwind v4 */
 @theme {
-  /* Mapeamento manual para o motor do Tailwind v4 */
   --color-navy-900: var(--bg-primary);
   --color-navy-800: var(--bg-secondary);
   --color-gold-500: #e1b12c;
-
   --radius-xl: 1rem;
-  --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.45);
 }
 
+/* 2. Escopo Globais de Tema - Modo Claro (Padrão) */
 :root {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
   --text-primary: #0f172a;
   --text-secondary: #475569;
-  --card-bg: rgba(255, 255, 255, 0.7);
-  --card-border: rgba(0, 0, 0, 0.1);
+  
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(15, 23, 42, 0.08);
+  --shadow-glass: 0 10px 30px rgba(15, 23, 42, 0.03);
 }
 
+/* 3. Escopo Globais de Tema - Modo Escuro (Fundo Corrigido) */
 .dark {
   --bg-primary: #050a15;
   --bg-secondary: #0a1224;
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
+  
   --card-bg: rgba(10, 18, 36, 0.5);
   --card-border: rgba(255, 255, 255, 0.1);
+  --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.55);
 }
 
+/* 4. Classes Utilitárias Glassmorphism */
 @layer components {
   .glass-card {
-    background-color: var(--card-bg);
+    background-color: var(--card-bg) !important;
     backdrop-filter: blur(12px);
-    border: 1px solid var(--card-border);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--card-border) !important;
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-glass);
-  }
-
-  .glass-surface {
-    background-color: rgba(10, 18, 36, 0.35);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-xl);
-  }
-
-  .glass-border {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-  }
-
-  .focus-ring {
-    outline: none;
-    box-shadow:
-      0 0 0 1px rgba(255, 255, 255, 0.12),
-      0 0 0 4px rgba(225, 177, 44, 0.22);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   }
 }
 
+/* 5. Estilos de Base */
 @layer base {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     box-sizing: border-box;
   }
 
-  html,
-  body {
+  html, body {
     height: 100%;
-  }
-  
-  html {
-    scroll-behavior: smooth;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
   }
 
   body {
     margin: 0;
-  }
-
-  img,
-  picture,
-  video,
-  canvas,
-  svg {
-    display: block;
-    max-width: 100%;
-  }
-
-  input,
-  button,
-  textarea,
-  select {
-    font: inherit;
-  }
-
-  body {
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
-    @apply antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 

@@ -13,7 +13,6 @@ import {
 } from 'react-icons/si'
 import { FaJava, FaDatabase, FaCogs, FaRobot, FaNetworkWired, FaProjectDiagram } from 'react-icons/fa'
 
-// Mapeia os ícones coloridos baseados no nome da Stack
 function StackIcon({ name }: { name: string }) {
   const getIcon = () => {
     switch (name) {
@@ -48,7 +47,6 @@ function StackIcon({ name }: { name: string }) {
   return icon ? <span className="text-[16px]">{icon}</span> : null;
 }
 
-// Ícones SVG mantidos conforme seu código
 function GitHubIcon({ size = 18 }: { size?: number }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -92,23 +90,33 @@ export default function App() {
   const currentStacks = STACKS[language]
   const currentUIText = UI_TEXT[language]
 
+  // Animação idêntica à das Stacks configurada com o cubic-bezier padrão do easeOut do CSS
+  const unifiedAnimation: import('framer-motion').MotionProps = {
+    initial: { opacity: 0, y: 20 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.5, ease: [0.215, 0.610, 0.355, 1.000] } 
+  }
+
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] transition-colors duration-300">
       <div className="mx-auto w-full max-w-6xl px-4 py-10 md:py-14">
-        <header className="relative flex flex-col items-start gap-3">
+        <header className="relative flex flex-col items-start gap-3 pt-16 md:pt-0">
+          
           {/* Mobile Selectors */}
-          <div className="absolute top-6 right-4 flex md:hidden gap-2 items-center z-50">
+          <div className="absolute top-6 right-4 flex md:hidden gap-1.5 p-1.5 items-center z-50 rounded-full border border-slate-200 bg-white/90 dark:bg-white/5 backdrop-blur-md shadow-sm">
             <button
               onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
-              className="px-3 py-1.5 text-xs font-bold rounded-full bg-white/5 border border-transparent text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-primary"
+              className="px-2.5 py-1 text-xs font-bold rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
             >
               {language === 'PT' ? 'EN' : 'PT'}
             </button>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-white/5 text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-gold-500"
+              className="inline-flex h-7 w-7 items-center justify-center rounded-full text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+              aria-label="Toggle Theme"
             >
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {isDarkMode ? <Sun size={15} className="text-amber-500" /> : <Moon size={15} className="text-indigo-500 dark:text-indigo-300" />}
             </button>
           </div>
 
@@ -122,78 +130,92 @@ export default function App() {
               className="mr-4 md:mr-6 w-16 h-16 md:w-20 md:h-20 rounded-full border border-gold-500/50 object-cover"
             />
             <div className="flex flex-col">
-              <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-primary">
+              <h1 key={`name-${language}`} className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
                 {currentInfo.name}
               </h1>
-              <p className="text-gold-500/90 font-medium leading-tight">{currentInfo.title}</p>
+              <p key={`title-${language}`} className="text-gold-500/90 font-medium leading-tight">{currentInfo.title}</p>
             </div>
           </div>
-          <p className="text-secondary max-w-2xl">
+          <p key={`edu-${language}`} className="text-[var(--text-secondary)] max-w-2xl">
             {currentInfo.education}
           </p>
         </header>
 
-        {/* Barra de Navegação */}
-        <nav className="mt-10 flex flex-wrap items-center gap-2 p-1.5 bg-primary/5 rounded-full border border-primary/10 w-fit">
-          <button
-            onClick={() => setCurrentTab('home')}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              currentTab === 'home' ? 'bg-gold-500/20 text-gold-500' : 'text-secondary hover:text-primary hover:bg-primary/5'
-            }`}
+        {/* Container de Navegação Premium: Abas Centradas + Utilitários na Direita */}
+        <div className="mt-10 w-full flex flex-col md:flex-row items-center md:justify-center relative gap-4 md:gap-0">
+          
+          {/* 1. NAV BAR: Focada puramente nas abas, com padding cirúrgico */}
+          <nav 
+            className="flex flex-nowrap items-center gap-1 p-1.5 rounded-full border bg-[var(--bg-secondary)] border-slate-300 dark:border-white/10 shadow-sm dark:shadow-none w-full max-w-sm md:w-auto"
           >
-            <Grid size={16} />
-            {currentUIText.tabs.home}
-          </button>
-          <button
-            onClick={() => setCurrentTab('projects')}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              currentTab === 'projects' ? 'bg-gold-500/20 text-gold-500' : 'text-secondary hover:text-primary hover:bg-primary/5'
-            }`}
-          >
-            <FolderGit2 size={16} />
-            {currentUIText.tabs.projects}
-          </button>
-          <button
-            onClick={() => setCurrentTab('stacks')}
-            className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
-              currentTab === 'stacks' ? 'bg-gold-500/20 text-gold-500' : 'text-secondary hover:text-primary hover:bg-primary/5'
-            }`}
-          >
-            <Layers size={16} />
-            {currentUIText.tabs.stacks}
-          </button>
+            <button
+              onClick={() => setCurrentTab('home')}
+              className={`flex items-center justify-center gap-2 flex-1 md:flex-initial px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 ${
+                currentTab === 'home' 
+                  ? 'bg-gold-500/20 text-gold-500' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-100 dark:hover:bg-white/5'
+              }`}
+            >
+              <Grid size={15} />
+              {currentUIText.tabs.home}
+            </button>
+            
+            <button
+              onClick={() => setCurrentTab('projects')}
+              className={`flex items-center justify-center gap-2 flex-1 md:flex-initial px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 ${
+                currentTab === 'projects' 
+                  ? 'bg-gold-500/20 text-gold-500' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-100 dark:hover:bg-white/5'
+              }`}
+            >
+              <FolderGit2 size={15} />
+              {currentUIText.tabs.projects}
+            </button>
+            
+            <button
+              onClick={() => setCurrentTab('stacks')}
+              className={`flex items-center justify-center gap-2 flex-1 md:flex-initial px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 ${
+                currentTab === 'stacks' 
+                  ? 'bg-gold-500/20 text-gold-500' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-100 dark:hover:bg-white/5'
+              }`}
+            >
+              <Layers size={15} />
+              {currentUIText.tabs.stacks}
+            </button>
+          </nav>
 
-          {/* Desktop Selectors */}
-          <div className="border-l border-white/10 pl-2 ml-2 hidden md:flex gap-2 items-center">
+          {/* 2. SELETORES DESKTOP: Posicionados do lado de fora com padding elegante na direita */}
+          <div className="hidden md:flex items-center gap-1 md:absolute md:right-0">
             <button
               onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
-              className="px-3 py-1.5 text-xs font-bold rounded-full bg-white/5 border border-transparent text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-primary"
+              className="px-3 py-1.5 text-xs font-bold rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200/50 dark:hover:bg-white/5 transition-all duration-200"
             >
               {language === 'PT' ? 'EN' : 'PT'}
             </button>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-transparent bg-white/5 text-secondary/70 transition-all hover:bg-white/10 hover:border-white/10 hover:text-gold-500"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200/50 dark:hover:bg-white/5 transition-all duration-200"
+              aria-label="Toggle Theme"
             >
-              {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {isDarkMode ? <Sun size={16} className="text-amber-500" /> : <Moon size={16} className="text-indigo-500 dark:text-indigo-300" />}
             </button>
           </div>
-        </nav>
+
+        </div>
 
         {/* PÁGINA: VISÃO GERAL (HOME) */}
         {currentTab === 'home' && (
           <section className="mt-8 grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-auto lg:auto-rows-[180px]">
           {currentBentoCards.map((card) => {
-            // AJUSTE CIRÚRGICO DE LAYOUT BENTO GRID
-            // Invertemos a validação do ID: o Agente Imobiliário assume o grid proporcional do Fiscal
             const colSpan =
               card.size === 'lg'
                 ? 'col-span-1 md:col-span-7 lg:col-span-7 md:row-span-2 lg:row-span-2'
                 : card.id === 'project-solargrid'
                   ? 'col-span-1 md:col-span-5 lg:col-span-5'
-                  : card.id === 'project-real-estate-ai' // O Agente de Vendas assume o espaço principal md:col-span-6 lg:col-span-5
+                  : card.id === 'project-real-estate-ai'
                     ? 'col-span-1 md:col-span-6 lg:col-span-5'
-                    : card.id === 'project-ocr' || card.id === 'project-fiscal' // Sentinela Fiscal e Leitor OCR dividem colunas iguais
+                    : card.id === 'project-ocr' || card.id === 'project-fiscal'
                       ? 'col-span-1 md:col-span-6 lg:col-span-6'
                       : 'col-span-1 md:col-span-6 lg:col-span-5'
 
@@ -202,25 +224,19 @@ export default function App() {
                 <motion.div
                   key={card.id}
                   className={`${colSpan}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  whileHover={{
-                    y: -5,
-                    scale: 1.01,
-                  }}
+                  {...unifiedAnimation}
+                  whileHover={{ y: -5 }}
                 >
-                  <div className="glass-card h-full p-8 md:p-10 pb-12 md:pb-14 flex flex-col justify-between group transition-colors hover:bg-white/10">
+                  <div className="glass-card h-full p-8 md:p-10 pb-12 md:pb-14 flex flex-col justify-between group">
                     <div className="space-y-4">
                       <p className="text-xs font-semibold tracking-[0.25em] uppercase text-gold-500/80">
                         {card.title}
                       </p>
-                      <p className="text-primary/85 text-base md:text-lg leading-relaxed max-w-xl">
+                      <p key={language} className="text-[var(--text-primary)] opacity-90 text-base md:text-lg leading-relaxed max-w-xl">
                         {currentInfo.description}
                       </p>
 
-                      <div className="pt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-secondary/70">
+                      <div className="pt-2 flex flex-wrap gap-x-4 gap-y-2 text-xs font-semibold text-[var(--text-secondary)]">
                         <span className="inline-flex items-center gap-2">
                           <span className="h-1.5 w-1.5 rounded-full bg-gold-500/70" />
                           Fluxos de IA Autônomos
@@ -239,30 +255,28 @@ export default function App() {
                     <div className="pt-6 flex flex-wrap items-center justify-between gap-4">
                       <button
                         type="button"
-                        className="inline-flex items-center gap-3 rounded-full border border-primary/10 bg-primary/5 px-5 py-3 text-sm font-semibold text-primary transition-all hover:bg-white/10 hover:border-white/20"
+                        className="inline-flex items-center gap-3 rounded-full border border-slate-200 dark:border-transparent bg-slate-100 dark:bg-white/5 px-5 py-3 text-sm font-semibold text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/10"
                       >
                         <span className="relative flex h-2.5 w-2.5">
                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
                           <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400" />
                         </span>
-                        {currentInfo.status}
+                        <span key={language}>{currentInfo.status}</span>
                       </button>
 
                       <div className="flex items-center gap-2">
-                        {/* Botão Currículo */}
                         <button
                           onClick={() => setIsResumeOpen(true)}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-transparent bg-slate-100 dark:bg-white/5 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/10 hover:text-gold-500"
                           aria-label={currentInfo.resume}
                           title={currentInfo.resume}
                         >
                           <FileText size={18} />
                         </button>
 
-                        {/* Botão E-mail */}
                         <a
                           href="mailto:wallacepereira@proton.me"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-transparent bg-slate-100 dark:bg-white/5 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/10 hover:text-gold-500"
                           aria-label="Email"
                           title="Email"
                         >
@@ -273,7 +287,7 @@ export default function App() {
                           href="https://github.com/Wallace-Pereira1"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-transparent bg-slate-100 dark:bg-white/5 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/10"
                           aria-label="GitHub"
                           title="GitHub"
                         >
@@ -283,7 +297,7 @@ export default function App() {
                           href="https://www.linkedin.com/in/wallacepereira-in/"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-primary/10 bg-primary/5 text-primary transition-all hover:bg-white/10 hover:border-white/20"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-200 dark:border-transparent bg-slate-100 dark:bg-white/5 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/10"
                           aria-label="LinkedIn"
                           title="LinkedIn"
                         >
@@ -296,16 +310,12 @@ export default function App() {
               )
             }
 
-
-
             return (
               <motion.div
                 key={card.id}
                 className={colSpan}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                {...unifiedAnimation}
+                whileHover={{ y: -5 }}
               >
                 <BentoCard
                   title={card.title}
@@ -313,7 +323,7 @@ export default function App() {
                   description={'description' in card && typeof card.description === 'string' ? card.description : undefined}
                   icon={'icon' in card ? card.icon : undefined}
                   tag={'tag' in card && typeof card.tag === 'string' ? card.tag : undefined}
-                  className="h-full"
+                  className="h-full glass-card"
                   onClick={
                     card.type === 'project' && 'projectId' in card
                       ? () => {
@@ -335,10 +345,8 @@ export default function App() {
               <motion.div
                 key={project.id}
                 className="col-span-1"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                {...unifiedAnimation}
+                whileHover={{ y: -5 }}
               >
                 <BentoCard
                   title={project.title}
@@ -349,8 +357,8 @@ export default function App() {
                   }
                 tag={currentUIText.projects.tag}
                 icon={FolderGit2}
-                className="h-full min-h-[220px] cursor-pointer transition-colors"
-                  onClick={() => setSelectedProjectId(project.id)}
+                className="h-full min-h-[220px] cursor-pointer glass-card"
+                onClick={() => setSelectedProjectId(project.id)}
                 />
               </motion.div>
             ))}
@@ -363,24 +371,20 @@ export default function App() {
           {currentStacks.map((group: any) => (
               <motion.div
                 key={group.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                {...unifiedAnimation}
                 whileHover={{ y: -5 }}
-                className="glass-card p-8 flex flex-col gap-6 group transition-colors hover:bg-white/10"
+                className="glass-card p-8 flex flex-col gap-6 group"
               >
-                <div className="flex items-center gap-4 text-gold-500 border-b border-primary/10 pb-4">
+                <div className="flex items-center gap-4 text-gold-500 border-b border-slate-200 dark:border-white/5 pb-4">
                   <group.icon size={28} />
-                  <h2 className="text-xl font-bold tracking-wider uppercase">{group.name}</h2>
+                  <h2 className="text-xl font-bold tracking-wider uppercase text-[var(--text-primary)]">{group.name}</h2>
                 </div>
                 <div className="flex flex-wrap gap-3">
-                  {/* ADICIONADO EXPLICITAMENTE O TIPO (item: string) ABAIXO PARA ENCERRA O ERRO TS7006 */}
                   {group.items.map((item: string) => (
                     <motion.span
                       key={item}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-primary/5 border border-primary/10 rounded-lg text-sm font-medium text-primary hover:bg-white/10 transition-all cursor-default"
+                      className="flex items-center gap-2 px-4 py-2 bg-slate-100/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-[var(--text-primary)] opacity-90 hover:bg-slate-200 dark:hover:bg-white/10 transition-all cursor-default"
                     >
                       <StackIcon name={item} />
                       {item}
@@ -399,7 +403,6 @@ export default function App() {
         onClose={() => setSelectedProjectId(null)}
       />
 
-      {/* NOVO MODAL DO CURRÍCULO */}
       <ResumeModal 
         isOpen={isResumeOpen} 
         onClose={() => setIsResumeOpen(false)} 
