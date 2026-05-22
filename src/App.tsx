@@ -251,7 +251,6 @@ export default function App() {
                     </div>
 
                     <div className="pt-6 flex flex-wrap items-center justify-between gap-4">
-                      {/* Corrigido Background/Border Invisível no iOS */}
                       <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2.5 text-xs font-bold text-emerald-600 dark:text-emerald-400">
                         <span className="relative flex h-2 w-2">
                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/70" />
@@ -260,15 +259,15 @@ export default function App() {
                         <span key={language}>{currentInfo.status}</span>
                       </div>
 
-                      {/* Botões das Redes Sociais com CSS Seguro para WebKit */}
+                      {/* Botões das Redes Sociais com Herança de Cor Corrigida de Forma Estrita */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setIsResumeOpen(true)}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/10 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/10 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20"
                           aria-label={currentInfo.resume}
                           title={currentInfo.resume}
                         >
-                          <FileText size={18} />
+                          <FileText size={18} className="text-[var(--text-primary)]" />
                         </button>
 
                         <a
@@ -277,7 +276,7 @@ export default function App() {
                           aria-label="Email"
                           title="Email"
                         >
-                          <Mail size={18} />
+                          <Mail size={18} className="text-[var(--text-primary)] hover:text-gold-500" />
                         </a>
 
                         <a
@@ -288,7 +287,9 @@ export default function App() {
                           aria-label="GitHub"
                           title="GitHub"
                         >
-                          <GitHubIcon size={18} />
+                          <span className="text-[var(--text-primary)] hover:text-gold-500">
+                            <GitHubIcon size={18} />
+                          </span>
                         </a>
                         <a
                           href="https://www.linkedin.com/in/wallacepereira-in/"
@@ -298,7 +299,9 @@ export default function App() {
                           aria-label="LinkedIn"
                           title="LinkedIn"
                         >
-                          <LinkedInIcon size={18} />
+                          <span className="text-[var(--text-primary)] hover:text-gold-500">
+                            <LinkedInIcon size={18} />
+                          </span>
                         </a>
                       </div>
                     </div>
