@@ -169,14 +169,14 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
                     Arquitetura do Ecossistema
                   </p>
                   <div className="mt-2.5 flex flex-wrap gap-1.5">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="rounded-full border border-slate-300 dark:border-white/10 bg-slate-200/50 dark:bg-white/10 px-3 py-1 text-xs font-semibold text-[var(--text-primary)]"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                  {project.technologies.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-full border border-slate-300 dark:border-white/10 bg-[var(--badge-bg-mobile)] px-3 py-1 text-xs font-semibold text-slate-800 dark:text-slate-200"
+                    >
+                      {tech}
+                    </span>
+                  ))}
                   </div>
                 </div>
               </div>

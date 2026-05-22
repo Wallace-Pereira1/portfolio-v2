@@ -19,9 +19,9 @@
   --card-border: rgba(15, 23, 42, 0.08);
   --shadow-glass: 0 10px 30px rgba(15, 23, 42, 0.03);
   
-  /* Fallbacks para corrigir os blocos invisíveis/brancos no iOS */
-  --badge-bg: rgba(15, 23, 42, 0.05);
-  --badge-border: rgba(15, 23, 42, 0.1);
+  /* Cores sólidas seguras para elementos interativos em modo claro */
+  --btn-bg-mobile: #f1f5f9;
+  --badge-bg-mobile: rgba(15, 23, 42, 0.05);
 }
 
 /* 3. Escopo Globais de Tema - Modo Escuro (Fundo Corrigido para WebKit) */
@@ -35,9 +35,9 @@
   --card-border: rgba(255, 255, 255, 0.1);
   --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.55);
   
-  /* Fallbacks para corrigir os blocos invisíveis/brancos no iOS */
-  --badge-bg: rgba(255, 255, 255, 0.06);
-  --badge-border: rgba(255, 255, 255, 0.1);
+  /* Solução do Bug iOS: Cores hexadecimais sólidas escuras para os botões e badges */
+  --btn-bg-mobile: #121c33;
+  --badge-bg-mobile: #121c33;
 }
 
 /* 4. Classes Utilitárias Glassmorphism */
@@ -72,6 +72,12 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  /* Garante rolagem elástica ultra suave em touchscreens */
+  .overflow-y-auto {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   ::selection {

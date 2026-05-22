@@ -259,35 +259,35 @@ export default function App() {
                         <span key={language}>{currentInfo.status}</span>
                       </div>
 
-                      {/* Botões das Redes Sociais com Herança de Cor Corrigida de Forma Estrita */}
+                      {/* Botões das Redes Sociais - Ajustados Explicitamente para Modo Escuro no iOS */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setIsResumeOpen(true)}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/10 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
                           aria-label={currentInfo.resume}
                           title={currentInfo.resume}
                         >
-                          <FileText size={18} className="text-[var(--text-primary)]" />
+                          <FileText size={18} className="text-slate-800 dark:text-slate-200" />
                         </button>
 
                         <a
                           href="mailto:wallacepereira@proton.me"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/10 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
                           aria-label="Email"
                           title="Email"
                         >
-                          <Mail size={18} className="text-[var(--text-primary)] hover:text-gold-500" />
+                          <Mail size={18} className="text-slate-800 dark:text-slate-200" />
                         </a>
 
                         <a
                           href="https://github.com/Wallace-Pereira1"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/10 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
                           aria-label="GitHub"
                           title="GitHub"
                         >
-                          <span className="text-[var(--text-primary)] hover:text-gold-500">
+                          <span className="text-slate-800 dark:text-slate-200">
                             <GitHubIcon size={18} />
                           </span>
                         </a>
@@ -295,11 +295,11 @@ export default function App() {
                           href="https://www.linkedin.com/in/wallacepereira-in/"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/10 text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
                           aria-label="LinkedIn"
                           title="LinkedIn"
                         >
-                          <span className="text-[var(--text-primary)] hover:text-gold-500">
+                          <span className="text-slate-800 dark:text-slate-200">
                             <LinkedInIcon size={18} />
                           </span>
                         </a>
@@ -384,7 +384,7 @@ export default function App() {
                     <motion.span
                       key={item}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-slate-100/50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-[var(--text-primary)] opacity-90 hover:bg-slate-200 dark:hover:bg-white/10 transition-all cursor-default"
+                      className="flex items-center gap-2 px-4 py-2 bg-slate-100/50 dark:bg-[#121c33] border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/10 transition-all cursor-default"
                     >
                       <StackIcon name={item} />
                       {item}
