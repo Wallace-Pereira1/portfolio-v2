@@ -42,10 +42,10 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
   // Função que mapeia os IDs reais para renderizar os componentes de simulação
   const renderPlayground = (id: string) => {
     // Normaliza a string eliminando espaços, caixas e prefixos repetidos
-    const normalizedId = id.toLowerCase().trim()
+    const normalizedId = id.toLowerCase().trim().replace('project-', '')
 
     switch (normalizedId) {
-      // 1. Projeto Legado (ASP para Angular) - ATUALIZADO COM SEU ID REAL!
+      // 1. Projeto Legado (ASP para Angular)
       case 'legacy-modernization':
       case 'legacy-modernization-project':
       case 'legacy':
@@ -53,7 +53,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
       case 'projeto-legado': 
         return <LegacySlider />
 
-      // 2. Leitor de Notas Fiscais (OCR) - OPERACIONAL!
+      // 2. Leitor de Notas Fiscais (OCR)
       case 'ocr':
       case 'ocr-reader':
       case 'invoice-scanner':
@@ -62,20 +62,20 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
       case 'invoice-ocr-ia': 
         return <InvoiceScanner />
 
-      // 3. Agente Imobiliário de IA (Voz/Vendas) - OPERACIONAL!
+      // 3. Agente Imobiliário de IA (Voz/Vendas)
       case 'real-estate-ai':
       case 'real-estate-ai-agent':
       case 'real-estate':
         return <RealEstateAgent />
 
-      // 4. Sentinela Fiscal (Automação de Logs) - OPERACIONAL!
+      // 4. Sentinela Fiscal (Automação de Logs)
       case 'fiscal':
       case 'fiscal-sentinel':
       case 'sentinela-fiscal':
       case 'fiscal-sentinel-logs':
         return <FiscalSentinelLogs />
 
-      // 5. Hub de Parceiros (Redirecionamento / Produção) - OPERACIONAL!
+      // 5. Hub de Parceiros (Redirecionamento / Produção)
       case 'partner-management-hub':
       case 'solargrid':
         return (
@@ -146,7 +146,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
             <button
               type="button"
               onClick={onClose}
-              className="inline-flex h-9 items-center gap-2 rounded-full border border-slate-300 dark:border-white/10 bg-[var(--bg-secondary)] px-4 py-2 text-xs font-bold text-[var(--text-primary)] shadow-sm hover:bg-slate-100 dark:hover:bg-white/5 transition-all shrink-0"
+              className="inline-flex h-9 items-center gap-2 rounded-full border border-slate-300 dark:border-white/10 bg-[var(--bg-secondary)] px-4 py-2 text-xs font-bold text-[var(--text-primary)] shadow-sm hover:bg-slate-200 dark:hover:bg-white/20 transition-all shrink-0"
             >
               <ArrowLeft size={14} className="md:hidden" />
               <X size={14} className="hidden md:block" />
@@ -172,7 +172,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-lg border border-slate-200 dark:border-white/5 bg-slate-100 dark:bg-white/5 px-2.5 py-1 text-[11px] font-bold text-[var(--text-primary)]"
+                        className="rounded-full border border-slate-300 dark:border-white/10 bg-slate-200/50 dark:bg-white/10 px-3 py-1 text-xs font-semibold text-[var(--text-primary)]"
                       >
                         {tech}
                       </span>
@@ -185,7 +185,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
               <div className="flex flex-wrap gap-3 pt-4">
                 {project.links.github && (
                   <a
-                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 dark:border-white/10 bg-[var(--bg-secondary)] px-4 py-2.5 text-xs font-bold text-[var(--text-primary)] shadow-sm hover:bg-slate-100 dark:hover:bg-white/5 transition-all"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-white/10 px-4 py-2.5 text-xs font-bold text-[var(--text-primary)] shadow-sm hover:bg-slate-200 dark:hover:bg-white/20 transition-all"
                     href={project.links.github}
                     target="_blank"
                     rel="noreferrer"

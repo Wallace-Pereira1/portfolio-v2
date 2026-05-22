@@ -8,28 +8,36 @@
   --radius-xl: 1rem;
 }
 
-/* 2. Escopo Globais de Tema - Modo Claro (Padrão) */
+/* 2. Escopo Globais de Tema - Modo Claro (Otimizado com fallbacks estritos) */
 :root {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
   --text-primary: #0f172a;
   --text-secondary: #475569;
   
-  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-bg: rgba(255, 255, 255, 0.85);
   --card-border: rgba(15, 23, 42, 0.08);
   --shadow-glass: 0 10px 30px rgba(15, 23, 42, 0.03);
+  
+  /* Fallbacks para corrigir os blocos invisíveis/brancos no iOS */
+  --badge-bg: rgba(15, 23, 42, 0.05);
+  --badge-border: rgba(15, 23, 42, 0.1);
 }
 
-/* 3. Escopo Globais de Tema - Modo Escuro (Fundo Corrigido) */
+/* 3. Escopo Globais de Tema - Modo Escuro (Fundo Corrigido para WebKit) */
 .dark {
   --bg-primary: #050a15;
   --bg-secondary: #0a1224;
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   
-  --card-bg: rgba(10, 18, 36, 0.5);
+  --card-bg: rgba(10, 18, 36, 0.6);
   --card-border: rgba(255, 255, 255, 0.1);
   --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.55);
+  
+  /* Fallbacks para corrigir os blocos invisíveis/brancos no iOS */
+  --badge-bg: rgba(255, 255, 255, 0.06);
+  --badge-border: rgba(255, 255, 255, 0.1);
 }
 
 /* 4. Classes Utilitárias Glassmorphism */
@@ -37,7 +45,7 @@
   .glass-card {
     background-color: var(--card-bg) !important;
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Forçado suporte para Safari/iOS antigo */
     border: 1px solid var(--card-border) !important;
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-glass);
@@ -45,7 +53,7 @@
   }
 }
 
-/* 5. Estilos de Base */
+/* 5. Estilos de Base e Correções de Isolamento para iOS */
 @layer base {
   *, *::before, *::after {
     box-sizing: border-box;
@@ -55,6 +63,8 @@
     height: 100%;
     background-color: var(--bg-primary);
     color: var(--text-primary);
+    /* Previne o zoom esquisito ao rotacionar a tela no iOS */
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
