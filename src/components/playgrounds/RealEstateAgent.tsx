@@ -5,24 +5,18 @@ import { Bot, Play, Square } from 'lucide-react'
 export function RealEstateAgent() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [step, setStep] = useState(0)
-  
-  // Referência para guardar a instância do áudio nativo do navegador
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
-  // Inicializa o áudio apenas uma vez ao montar o componente
   useEffect(() => {
-    // Aponta para o arquivo que você salvou na pasta public
     audioRef.current = new Audio('/audio_exemplo.m4a')
 
-    // Evento disparado automaticamente quando o áudio chega ao fim
     const handleAudioEnd = () => {
       setIsPlaying(false)
-      setStep(3) // Avança direto para o estado final de Lead Qualificado
+      setStep(3)
     }
 
     audioRef.current.addEventListener('ended', handleAudioEnd)
 
-    // Limpeza ao desmontar o componente (evita áudio tocando fantasma)
     return () => {
       if (audioRef.current) {
         audioRef.current.pause()
@@ -31,32 +25,26 @@ export function RealEstateAgent() {
     }
   }, [])
 
-  // Gerencia o fluxo de controle de reprodução do áudio
   const togglePlayback = () => {
     if (!audioRef.current) return
 
     if (isPlaying) {
       audioRef.current.pause()
-      audioRef.current.currentTime = 0 // Reseta para o início
+      audioRef.current.currentTime = 0
       setIsPlaying(false)
       setStep(0)
     } else {
       audioRef.current.play().catch((err) => {
-        console.error("Erro ao reproduzir o áudio. O navegador pode exigir interação prévia do usuário.", err)
+        console.error("Erro ao reproduzir o áudio.", err)
       })
       setIsPlaying(true)
       setStep(0)
     }
   }
 
-  // Controla a linha do tempo visual com base no tempo de reprodução (7 segundos total)
   useEffect(() => {
     if (!isPlaying) return
-
-    // Passo 1: Transcrição aparece após 1 segundo de áudio tocando
     const t1 = setTimeout(() => setStep(1), 1000)
-    
-    // Passo 2: Agente de IA começa a processar aos 5.5 segundos (perto do fim do áudio)
     const t2 = setTimeout(() => setStep(2), 5500)
 
     return () => {
@@ -71,7 +59,6 @@ export function RealEstateAgent() {
         <Bot size={14} /> Análise por Voz: Transcrição & Score de Leads
       </div>
 
-      {/* Player de Áudio Real */}
       <div className="p-3 rounded-xl bg-slate-950 flex items-center gap-4 border border-white/5">
         <button 
           onClick={togglePlayback} 
@@ -80,7 +67,6 @@ export function RealEstateAgent() {
           {isPlaying ? <Square size={14} fill="currentColor" /> : <Play size={14} className="ml-0.5" fill="currentColor" />}
         </button>
 
-        {/* Ondas Sonoras Dinâmicas */}
         <div className="flex-1 flex items-center gap-0.5 h-6">
           {[...Array(24)].map((_, i) => (
             <div 
@@ -88,7 +74,6 @@ export function RealEstateAgent() {
               className="flex-1 bg-gold-500/80 rounded-full transition-all duration-300" 
               style={{ 
                 height: isPlaying ? `${Math.floor(Math.random() * 80) + 20}%` : '15%',
-                // Adiciona um efeito pulse via css quando estiver tocando
                 animation: isPlaying ? 'pulse 0.5s ease-in-out infinite alternate' : 'none',
                 animationDelay: `${i * 0.02}s`
               }} 
@@ -97,7 +82,7 @@ export function RealEstateAgent() {
         </div>
       </div>
 
-      {/* Logs do Pipeline */}
+      {/* Corrigido para evitar o fundo esbranquiçado cumulativo no iOS */}
       <div className="flex-1 min-h-[140px] border border-slate-200 dark:border-white/5 bg-[var(--bg-secondary)] rounded-lg p-3 flex flex-col justify-center">
         {step === 0 && !isPlaying && (
           <p className="text-center text-xs text-[var(--text-secondary)] font-medium">
@@ -112,17 +97,17 @@ export function RealEstateAgent() {
         )}
 
         {step >= 1 && (
-          <div className="text-xs font-mono text-[var(--text-primary)] bg-slate-900/50 p-2 rounded border border-white/5 space-y-1">
+          <div className="text-xs font-mono text-[var(--text-primary)] bg-slate-950 rounded p-2 border border-slate-200 dark:border-white/5 space-y-1">
             <p className="text-gold-500 flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" /> 
               Transcrição em tempo real:
             </p>
-            <p className="italic">"Procuro um imóvel de 3 quartos na Barra da Tijuca, teto disponível de 1.5M..."</p>
+            <p className="italic text-[var(--text-primary)]">"Procuro um imóvel de 3 quartos na Barra da Tijuca, teto disponível de 1.5M..."</p>
           </div>
         )}
 
         {step === 2 && (
-          <p className="text-center text-xs font-mono text-purple-500 animate-pulse mt-2">
+          <p className="text-center text-xs font-mono text-purple-500 dark:text-purple-400 animate-pulse mt-2">
             🧠 [LLM REASONING] Avaliando perfil, extraindo tags e pontuando intenção...
           </p>
         )}

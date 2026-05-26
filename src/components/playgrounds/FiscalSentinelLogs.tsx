@@ -40,8 +40,15 @@ export function FiscalSentinelLogs() {
         ))}
       </div>
       <div className="grid grid-cols-2 gap-3">
-        <div className="p-2 rounded-xl bg-slate-100/70 dark:bg-white/5 text-center"><span className="text-[10px] text-[var(--text-secondary)] block font-bold">Uptime</span><span className="text-sm font-extrabold">24/7 Ativo</span></div>
-        <div className="p-2 rounded-xl bg-emerald-500/10 text-center"><span className="text-[10px] text-emerald-500 block font-bold">Faturamento</span><span className="text-sm font-extrabold text-emerald-500">Conforme</span></div>
+        {/* Corrigido fundo esbranquiçado no iOS usando a variável estável */}
+        <div className="p-2 rounded-xl bg-[var(--badge-bg-mobile)] border border-slate-200 dark:border-white/5 text-center">
+          <span className="text-[10px] text-[var(--text-secondary)] block font-bold">Uptime</span>
+          <span className="text-sm font-extrabold text-[var(--text-primary)]">24/7 Ativo</span>
+        </div>
+        <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
+          <span className="text-[10px] text-emerald-500 block font-bold">Faturamento</span>
+          <span className="text-sm font-extrabold text-emerald-500">Conforme</span>
+        </div>
       </div>
     </div>
   )
