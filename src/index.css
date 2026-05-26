@@ -19,9 +19,11 @@
   --card-border: rgba(15, 23, 42, 0.08);
   --shadow-glass: 0 10px 30px rgba(15, 23, 42, 0.03);
   
-  /* Cores sólidas seguras para elementos interativos em modo claro */
+  /* Cores sólidas puras em HEX para evitar bugs de opacidade no iOS/Safari */
   --btn-bg-mobile: #f1f5f9;
-  --badge-bg-mobile: rgba(15, 23, 42, 0.05);
+  --btn-border-mobile: #cbd5e1;
+  --badge-bg-mobile: #e2e8f0;
+  --badge-text-mobile: #334155;
 }
 
 /* 3. Escopo Globais de Tema - Modo Escuro (Fundo Corrigido para WebKit) */
@@ -35,9 +37,11 @@
   --card-border: rgba(255, 255, 255, 0.1);
   --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.55);
   
-  /* Solução do Bug iOS: Cores hexadecimais sólidas escuras para os botões e badges */
+  /* Cores sólidas profundas para isolamento completo no Modo Escuro */
   --btn-bg-mobile: #121c33;
+  --btn-border-mobile: #1e293b;
   --badge-bg-mobile: #121c33;
+  --badge-text-mobile: #cbd5e1;
 }
 
 /* 4. Classes Utilitárias Glassmorphism */

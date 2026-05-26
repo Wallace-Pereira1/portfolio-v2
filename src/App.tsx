@@ -44,7 +44,7 @@ function StackIcon({ name }: { name: string }) {
     }
   };
   const icon = getIcon();
-  return icon ? <span className="text-[16px]">{icon}</span> : null;
+  return icon ? <span className="text-[16px] flex items-center justify-center">{icon}</span> : null;
 }
 
 function GitHubIcon({ size = 18 }: { size?: number }) {
@@ -103,7 +103,7 @@ export default function App() {
         <header className="relative flex flex-col items-start gap-3 pt-16 md:pt-0">
           
           {/* Mobile Selectors */}
-          <div className="absolute top-6 right-4 flex md:hidden gap-1.5 p-1.5 items-center z-50 rounded-full border border-slate-300 bg-white dark:bg-[#0a1224] shadow-sm">
+          <div className="absolute top-6 right-4 flex md:hidden gap-1.5 p-1.5 items-center z-50 rounded-full border border-slate-300 dark:border-white/10 bg-white dark:bg-[#0a1224] shadow-sm">
             <button
               onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
               className="px-2.5 py-1 text-xs font-bold rounded-full text-[var(--text-secondary)] hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
@@ -259,49 +259,45 @@ export default function App() {
                         <span key={language}>{currentInfo.status}</span>
                       </div>
 
-                      {/* Botões das Redes Sociais - Ajustados Explicitamente para Modo Escuro no iOS */}
+                      {/* Botões das Redes Sociais - Amarrados com as variáveis de cor pura HEX */}
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setIsResumeOpen(true)}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20"
                           aria-label={currentInfo.resume}
                           title={currentInfo.resume}
                         >
-                          <FileText size={18} className="text-slate-800 dark:text-slate-200" />
+                          <FileText size={18} />
                         </button>
 
                         <a
                           href="mailto:wallacepereira@proton.me"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
                           aria-label="Email"
                           title="Email"
                         >
-                          <Mail size={18} className="text-slate-800 dark:text-slate-200" />
+                          <Mail size={18} />
                         </a>
 
                         <a
                           href="https://github.com/Wallace-Pereira1"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
                           aria-label="GitHub"
                           title="GitHub"
                         >
-                          <span className="text-slate-800 dark:text-slate-200">
-                            <GitHubIcon size={18} />
-                          </span>
+                          <GitHubIcon size={18} />
                         </a>
                         <a
                           href="https://www.linkedin.com/in/wallacepereira-in/"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-slate-300 dark:border-white/10 bg-slate-100 dark:bg-[#121c33] text-slate-800 dark:text-slate-200 transition-all hover:bg-slate-200 dark:hover:bg-white/10"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
                           aria-label="LinkedIn"
                           title="LinkedIn"
                         >
-                          <span className="text-slate-800 dark:text-slate-200">
-                            <LinkedInIcon size={18} />
-                          </span>
+                          <LinkedInIcon size={18} />
                         </a>
                       </div>
                     </div>
@@ -384,7 +380,7 @@ export default function App() {
                     <motion.span
                       key={item}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-slate-100/50 dark:bg-[#121c33] border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-slate-800 dark:text-slate-200 hover:bg-slate-200 dark:hover:bg-white/10 transition-all cursor-default"
+                      className="flex items-center gap-2 px-4 py-2 bg-[var(--badge-bg-mobile)] border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-white/10 transition-all cursor-default"
                     >
                       <StackIcon name={item} />
                       {item}
