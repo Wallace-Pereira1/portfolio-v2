@@ -59,10 +59,10 @@ export function RealEstateAgent() {
         <Bot size={14} /> Análise por Voz: Transcrição & Score de Leads
       </div>
 
-      <div className="p-3 rounded-xl bg-slate-950 flex items-center gap-4 border border-white/5">
+      <div className="p-3 rounded-xl bg-[var(--playground-inner)] flex items-center gap-4 border border-[var(--playground-border)] transition-colors">
         <button 
           onClick={togglePlayback} 
-          className="h-9 w-9 flex items-center justify-center rounded-full bg-gold-500 text-slate-950 hover:scale-105 transition-transform shrink-0"
+          className="h-9 w-9 flex items-center justify-center rounded-full bg-gold-500 text-slate-950 hover:scale-105 transition-transform shrink-0 shadow-sm"
         >
           {isPlaying ? <Square size={14} fill="currentColor" /> : <Play size={14} className="ml-0.5" fill="currentColor" />}
         </button>
@@ -71,7 +71,7 @@ export function RealEstateAgent() {
           {[...Array(24)].map((_, i) => (
             <div 
               key={i} 
-              className="flex-1 bg-gold-500/80 rounded-full transition-all duration-300" 
+              className="flex-1 bg-gold-500 rounded-full transition-all duration-300" 
               style={{ 
                 height: isPlaying ? `${Math.floor(Math.random() * 80) + 20}%` : '15%',
                 animation: isPlaying ? 'pulse 0.5s ease-in-out infinite alternate' : 'none',
@@ -82,8 +82,7 @@ export function RealEstateAgent() {
         </div>
       </div>
 
-      {/* Corrigido para evitar o fundo esbranquiçado cumulativo no iOS */}
-      <div className="flex-1 min-h-[140px] border border-slate-300 dark:border-white/5 bg-slate-900/50 dark:bg-[#0c1524] rounded-lg p-3 flex flex-col justify-center">
+      <div className="flex-1 min-h-[140px] border border-[var(--playground-border)] bg-[var(--playground-inner)] rounded-lg p-3 flex flex-col justify-center transition-colors">
         {step === 0 && !isPlaying && (
           <p className="text-center text-xs text-[var(--text-secondary)] font-medium">
             Clique no botão Play para escutar a ligação do Lead.
@@ -91,24 +90,24 @@ export function RealEstateAgent() {
         )}
         
         {isPlaying && step === 0 && (
-          <p className="text-center text-xs font-mono text-amber-500 animate-pulse">
-            🎙 [WHISPER API] Escutando e transcrevendo chamada áudio...
+          <p className="text-center text-xs font-mono text-amber-600 dark:text-amber-500 animate-pulse uppercase">
+            🎙 [Whisper API] Transcrevendo chamada...
           </p>
         )}
 
         {step >= 1 && (
-          <div className="text-xs font-mono text-[var(--text-primary)] bg-slate-950 rounded p-2 border border-slate-200 dark:border-white/5 space-y-1">
-            <p className="text-gold-500 flex items-center gap-1.5">
+          <div className="text-xs font-mono text-[var(--text-primary)] bg-[var(--bg-primary)] rounded p-2 border border-[var(--playground-border)] space-y-1 shadow-sm">
+            <p className="text-gold-600 dark:text-gold-500 font-bold flex items-center gap-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" /> 
-              Transcrição em tempo real:
+              Transcrição:
             </p>
             <p className="italic text-[var(--text-primary)]">"Procuro um imóvel de 3 quartos na Barra da Tijuca, teto disponível de 1.5M..."</p>
           </div>
         )}
 
         {step === 2 && (
-          <p className="text-center text-xs font-mono text-purple-500 dark:text-purple-400 animate-pulse mt-2">
-            🧠 [LLM REASONING] Avaliando perfil, extraindo tags e pontuando intenção...
+          <p className="text-center text-xs font-mono text-purple-600 dark:text-purple-400 animate-pulse mt-2 uppercase">
+            🧠 [LLM] Avaliando perfil e intenção...
           </p>
         )}
 
@@ -116,14 +115,14 @@ export function RealEstateAgent() {
           <motion.div 
             initial={{ opacity: 0, scale: 0.98 }} 
             animate={{ opacity: 1, scale: 1 }} 
-            className="p-2.5 rounded bg-emerald-500/10 border border-emerald-500/20 text-xs space-y-1 mt-2"
+            className="p-2.5 rounded bg-emerald-500 border border-emerald-600 text-white shadow-md text-xs space-y-1 mt-2"
           >
-            <div className="flex items-center justify-between font-bold text-emerald-500">
-              <span>✓ LEAD QUALIFICADO AUTOMATICAMENTE</span>
-              <span className="bg-emerald-500/20 px-2 py-0.5 rounded text-[10px]">SCORE: 9.8/10</span>
+            <div className="flex items-center justify-between font-bold">
+              <span>✓ LEAD QUALIFICADO</span>
+              <span className="bg-white/20 px-2 py-0.5 rounded text-[10px]">SCORE: 9.8/10</span>
             </div>
-            <p className="text-[11px] text-[var(--text-secondary)]">
-              Destino Webhook CRM: <span className="font-bold text-[var(--text-primary)]">Alta Prioridade - Barra</span>
+            <p className="text-[11px] opacity-90">
+              Destino: <span className="font-bold">Alta Prioridade - Barra</span>
             </p>
           </motion.div>
         )}

@@ -40,27 +40,51 @@ export function InvoiceScanner() {
         <FileText size={14} /> Pipeline de Visão: OCR & Estruturação
       </div>
       <div className="grid grid-cols-2 gap-2">
-        <button onClick={() => runScan('doc1')} className={`p-2 rounded-lg text-left border text-xs font-semibold transition-all ${selectedInvoice === 'doc1' ? 'border-gold-500 bg-gold-500/10 text-gold-500' : 'border-slate-300 dark:border-white/5 bg-[var(--bg-secondary)]'}`}>
+        <button 
+          onClick={() => runScan('doc1')} 
+          className={`p-2 rounded-lg text-left border text-xs font-semibold transition-all ${
+            selectedInvoice === 'doc1' 
+              ? 'border-gold-500 bg-gold-500/10 text-gold-500' 
+              : 'border-[var(--playground-border)] bg-[var(--playground-inner)] text-[var(--text-primary)]'
+          }`}
+        >
           📄 Nota_Prestacao.pdf
         </button>
-        <button onClick={() => runScan('doc2')} className={`p-2 rounded-lg text-left border text-xs font-semibold transition-all ${selectedInvoice === 'doc2' ? 'border-gold-500 bg-gold-500/10 text-gold-500' : 'border-slate-300 dark:border-white/5 bg-[var(--bg-secondary)]'}`}>
+        <button 
+          onClick={() => runScan('doc2')} 
+          className={`p-2 rounded-lg text-left border text-xs font-semibold transition-all ${
+            selectedInvoice === 'doc2' 
+              ? 'border-gold-500 bg-gold-500/10 text-gold-500' 
+              : 'border-[var(--playground-border)] bg-[var(--playground-inner)] text-[var(--text-primary)]'
+          }`}
+        >
           📄 Nota_Servico_Rio.png
         </button>
       </div>
-      <div className="flex-1 min-h-[160px] bg-slate-950 rounded-lg relative overflow-hidden flex flex-col p-4 justify-center border border-white/5">
+      <div className="flex-1 min-h-[160px] bg-[var(--playground-inner)] rounded-lg relative overflow-hidden flex flex-col p-4 justify-center border border-[var(--playground-border)] transition-colors duration-300">
         {isScanning && (
           <>
             <div className="absolute inset-x-0 h-0.5 bg-gold-500 top-0 shadow-[0_0_15px_#e1b12c] animate-[bounce_1.2s_infinite]" />
-            <p className="text-center text-xs font-mono text-gold-500 animate-pulse">PARSING MULTIMODAL EM EXECUÇÃO...</p>
+            <p className="text-center text-xs font-mono text-gold-500 animate-pulse uppercase">Parsing Multimodal em Execução...</p>
           </>
         )}
-        {!isScanning && !scanResult && <p className="text-center text-xs font-mono text-slate-500">Selecione um documento acima para simular a extração.</p>}
+        {!isScanning && !scanResult && (
+          <p className="text-center text-xs font-mono text-[var(--text-secondary)]">
+            Selecione um documento acima para simular a extração.
+          </p>
+        )}
         {!isScanning && scanResult && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="font-mono text-[11px] text-emerald-400 space-y-1 h-full overflow-y-auto">
-            <p><span className="text-purple-400">"emitente"</span>: "{scanResult.emitente}",</p>
-            <p><span className="text-purple-400">"cnpj"</span>: "{scanResult.cnpj}",</p>
-            <p><span className="text-purple-400">"valor"</span>: "{scanResult.valor_total}",</p>
-            <p className="text-xs text-white bg-emerald-500/20 p-1 rounded mt-2 inline-block">✓ {scanResult.status}</p>
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            className="font-mono text-[11px] text-emerald-600 dark:text-emerald-400 space-y-1 h-full overflow-y-auto"
+          >
+            <p><span className="text-purple-600 dark:text-purple-400">"emitente"</span>: "{scanResult.emitente}",</p>
+            <p><span className="text-purple-600 dark:text-purple-400">"cnpj"</span>: "{scanResult.cnpj}",</p>
+            <p><span className="text-purple-600 dark:text-purple-400">"valor"</span>: "{scanResult.valor_total}",</p>
+            <p className="text-[10px] font-bold text-white bg-emerald-500 px-2 py-1 rounded mt-2 inline-block">
+              ✓ {scanResult.status}
+            </p>
           </motion.div>
         )}
       </div>

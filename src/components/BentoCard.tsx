@@ -36,7 +36,7 @@ export function BentoCard({ title, subtitle, description, icon: Icon, tag, class
             </div>
           )}
           {tag && (
-            <span className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] opacity-70 font-bold border border-slate-200 dark:border-white/5 px-2 py-1 rounded">
+            <span className="text-[10px] uppercase tracking-widest text-[var(--text-secondary)] opacity-70 font-bold border border-[var(--btn-border-mobile)] px-2 py-1 rounded">
               {tag}
             </span>
           )}

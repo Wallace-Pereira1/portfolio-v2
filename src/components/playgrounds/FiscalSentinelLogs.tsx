@@ -34,20 +34,33 @@ export function FiscalSentinelLogs() {
       <div className="flex items-center gap-2 text-xs font-bold text-amber-500 uppercase tracking-wider">
         <Terminal size={14} /> Monitor de Eventos: Auditoria em Tempo Real
       </div>
-      <div ref={containerRef} className="flex-1 min-h-[170px] bg-slate-950 rounded-lg p-3 font-mono text-[10px] space-y-1.5 overflow-y-auto border border-white/5">
+      <div 
+        ref={containerRef} 
+        className="flex-1 min-h-[170px] bg-[var(--playground-inner)] rounded-lg p-3 font-mono text-[10px] space-y-1.5 overflow-y-auto border border-[var(--playground-border)] transition-colors duration-300"
+      >
         {logs.map((l, i) => (
-          <p key={i} className={l.includes('💚') ? 'text-emerald-400 font-semibold' : l.includes('🚀') ? 'text-blue-400' : 'text-slate-300'}>{l}</p>
+          <p 
+            key={i} 
+            className={
+              l.includes('💚') 
+                ? 'text-emerald-600 dark:text-emerald-400 font-bold' 
+                : l.includes('🚀') 
+                  ? 'text-blue-600 dark:text-blue-400 font-semibold' 
+                  : 'text-[var(--text-secondary)]'
+            }
+          >
+            {l}
+          </p>
         ))}
       </div>
       <div className="grid grid-cols-2 gap-3">
-        {/* Corrigido fundo esbranquiçado no iOS usando a variável estável */}
-        <div className="p-2 rounded-xl bg-[var(--badge-bg-mobile)] border border-slate-200 dark:border-white/5 text-center">
-          <span className="text-[10px] text-[var(--text-secondary)] block font-bold">Uptime</span>
+        <div className="p-2 rounded-xl bg-[var(--badge-bg-mobile)] border border-[var(--btn-border-mobile)] text-center shadow-sm">
+          <span className="text-[10px] text-[var(--text-secondary)] block font-bold uppercase tracking-tighter">Uptime</span>
           <span className="text-sm font-extrabold text-[var(--text-primary)]">24/7 Ativo</span>
         </div>
-        <div className="p-2 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-center">
-          <span className="text-[10px] text-emerald-500 block font-bold">Faturamento</span>
-          <span className="text-sm font-extrabold text-emerald-500">Conforme</span>
+        <div className="p-2 rounded-xl bg-emerald-500 border border-emerald-600 text-center shadow-sm">
+          <span className="text-[10px] text-white/90 block font-bold uppercase tracking-tighter">Faturamento</span>
+          <span className="text-sm font-extrabold text-white">Conforme</span>
         </div>
       </div>
     </div>

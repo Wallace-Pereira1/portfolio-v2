@@ -106,13 +106,13 @@ export default function App() {
           <div className="absolute top-6 right-4 flex md:hidden gap-1.5 p-1.5 items-center z-50 rounded-full border border-slate-300 dark:border-white/10 bg-white dark:bg-[#0a1224] shadow-sm">
             <button
               onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
-              className="px-2.5 py-1 text-xs font-bold rounded-full text-[var(--text-secondary)] hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+              className="px-2.5 py-1 text-xs font-bold rounded-full text-[var(--text-secondary)] hover:bg-slate-100 dark:hover:bg-[#1e293b] transition-colors"
             >
               {language === 'PT' ? 'EN' : 'PT'}
             </button>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="inline-flex h-7 w-7 items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-slate-100 dark:hover:bg-white/10 transition-colors"
+              className="inline-flex h-7 w-7 items-center justify-center rounded-full text-[var(--text-secondary)] hover:bg-slate-100 dark:hover:bg-[#1e293b] transition-colors"
               aria-label="Toggle Theme"
             >
               {isDarkMode ? <Sun size={15} className="text-amber-500" /> : <Moon size={15} className="text-indigo-500" />}
@@ -151,7 +151,7 @@ export default function App() {
               className={`flex items-center justify-center gap-2 flex-1 md:flex-initial px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 ${
                 currentTab === 'home' 
                   ? 'bg-gold-500/20 text-gold-500' 
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200/50 dark:hover:bg-white/5'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-[#1e293b]'
               }`}
             >
               <Grid size={15} />
@@ -163,7 +163,7 @@ export default function App() {
               className={`flex items-center justify-center gap-2 flex-1 md:flex-initial px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 ${
                 currentTab === 'projects' 
                   ? 'bg-gold-500/20 text-gold-500' 
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200/50 dark:hover:bg-white/5'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-[#1e293b]'
               }`}
             >
               <FolderGit2 size={15} />
@@ -175,7 +175,7 @@ export default function App() {
               className={`flex items-center justify-center gap-2 flex-1 md:flex-initial px-4 py-2 rounded-full text-xs md:text-sm font-semibold transition-all duration-200 ${
                 currentTab === 'stacks' 
                   ? 'bg-gold-500/20 text-gold-500' 
-                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200/50 dark:hover:bg-white/5'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-[#1e293b]'
               }`}
             >
               <Layers size={15} />
@@ -187,13 +187,13 @@ export default function App() {
           <div className="hidden md:flex items-center gap-1 md:absolute md:right-0">
             <button
               onClick={() => setLanguage(language === 'PT' ? 'EN' : 'PT')}
-              className="px-3 py-1.5 text-xs font-bold rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200/50 dark:hover:bg-white/5 transition-all duration-200"
+              className="px-3 py-1.5 text-xs font-bold rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-[#1e293b] transition-all duration-200"
             >
               {language === 'PT' ? 'EN' : 'PT'}
             </button>
             <button
               onClick={() => setIsDarkMode(!isDarkMode)}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200/50 dark:hover:bg-white/5 transition-all duration-200"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-[#1e293b] transition-all duration-200"
               aria-label="Toggle Theme"
             >
               {isDarkMode ? <Sun size={16} className="text-amber-500" /> : <Moon size={16} className="text-indigo-500" />}
@@ -263,7 +263,7 @@ export default function App() {
                       <div className="flex items-center gap-2">
                         <button
                           onClick={() => setIsResumeOpen(true)}
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-[#1e293b]"
                           aria-label={currentInfo.resume}
                           title={currentInfo.resume}
                         >
@@ -272,7 +272,7 @@ export default function App() {
 
                         <a
                           href="mailto:wallacepereira@proton.me"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-[#1e293b] hover:text-gold-500"
                           aria-label="Email"
                           title="Email"
                         >
@@ -283,7 +283,7 @@ export default function App() {
                           href="https://github.com/Wallace-Pereira1"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-[#1e293b] hover:text-gold-500"
                           aria-label="GitHub"
                           title="GitHub"
                         >
@@ -293,7 +293,7 @@ export default function App() {
                           href="https://www.linkedin.com/in/wallacepereira-in/"
                           target="_blank"
                           rel="noreferrer"
-                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-white/20 hover:text-gold-500"
+                          className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--btn-border-mobile)] bg-[var(--btn-bg-mobile)] text-[var(--text-primary)] transition-all hover:bg-slate-200 dark:hover:bg-[#1e293b] hover:text-gold-500"
                           aria-label="LinkedIn"
                           title="LinkedIn"
                         >
@@ -380,7 +380,7 @@ export default function App() {
                     <motion.span
                       key={item}
                       whileHover={{ scale: 1.05, y: -2 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-[var(--badge-bg-mobile)] border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-white/10 transition-all cursor-default"
+                      className="flex items-center gap-2 px-4 py-2 bg-[var(--badge-bg-mobile)] border border-slate-200 dark:border-white/10 rounded-lg text-sm font-medium text-[var(--text-primary)] hover:bg-slate-200 dark:hover:bg-[#1e293b] transition-all cursor-default"
                     >
                       <StackIcon name={item} />
                       {item}

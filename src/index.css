@@ -15,15 +15,20 @@
   --text-primary: #0f172a;
   --text-secondary: #475569;
   
-  --card-bg: rgba(255, 255, 255, 0.85);
-  --card-border: rgba(15, 23, 42, 0.08);
+  /* Cores sólidas para evitar bugs de opacidade no iOS/Safari */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
   --shadow-glass: 0 10px 30px rgba(15, 23, 42, 0.03);
   
-  /* Cores sólidas puras em HEX para evitar bugs de opacidade no iOS/Safari */
   --btn-bg-mobile: #f1f5f9;
   --btn-border-mobile: #cbd5e1;
   --badge-bg-mobile: #e2e8f0;
   --badge-text-mobile: #334155;
+
+  /* Superfícies sólidas para Playgrounds */
+  --playground-bg: #f1f5f9;
+  --playground-inner: #ffffff;
+  --playground-border: #cbd5e1;
 }
 
 /* 3. Escopo Globais de Tema - Modo Escuro (Fundo Corrigido para WebKit) */
@@ -33,23 +38,28 @@
   --text-primary: #f1f5f9;
   --text-secondary: #94a3b8;
   
-  --card-bg: rgba(10, 18, 36, 0.6);
-  --card-border: rgba(255, 255, 255, 0.1);
+  /* Cores sólidas profundas para isolamento completo no Modo Escuro */
+  --card-bg: #0a1224;
+  --card-border: #1e293b;
   --shadow-glass: 0 24px 60px rgba(0, 0, 0, 0.55);
   
-  /* Cores sólidas profundas para isolamento completo no Modo Escuro */
   --btn-bg-mobile: #121c33;
   --btn-border-mobile: #1e293b;
   --badge-bg-mobile: #121c33;
   --badge-text-mobile: #cbd5e1;
+
+  /* Superfícies sólidas para Playgrounds */
+  --playground-bg: #050a15;
+  --playground-inner: #0a1224;
+  --playground-border: #1e293b;
 }
 
-/* 4. Classes Utilitárias Glassmorphism */
+/* 4. Classes Utilitárias Glassmorphism (Agora blindadas) */
 @layer components {
   .glass-card {
     background-color: var(--card-bg) !important;
     backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* Forçado suporte para Safari/iOS antigo */
+    -webkit-backdrop-filter: blur(12px);
     border: 1px solid var(--card-border) !important;
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-glass);
@@ -67,7 +77,6 @@
     height: 100%;
     background-color: var(--bg-primary);
     color: var(--text-primary);
-    /* Previne o zoom esquisito ao rotacionar a tela no iOS */
     -webkit-text-size-adjust: 100%;
   }
 
@@ -78,7 +87,6 @@
     transition: background-color 0.3s ease, color 0.3s ease;
   }
 
-  /* Garante rolagem elástica ultra suave em touchscreens */
   .overflow-y-auto {
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -87,4 +95,10 @@
   ::selection {
     background: rgba(225, 177, 44, 0.25);
   }
+}
+
+/* Animações Customizadas para Playgrounds */
+@keyframes pulse {
+  from { opacity: 0.4; transform: scaleY(0.8); }
+  to { opacity: 1; transform: scaleY(1.2); }
 }

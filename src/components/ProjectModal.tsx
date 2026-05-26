@@ -110,7 +110,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
       <div className="fixed inset-0 z-50 flex items-center justify-center md:p-4">
         
         <motion.div
-          className="absolute inset-0 bg-slate-950/70 backdrop-blur-md"
+          className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -202,8 +202,8 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
               </div>
             </div>
 
-            {/* Substitua a div da coluna direita por esta: */}
-            <div className="md:col-span-6 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-950 overflow-hidden min-h-[300px]">
+            {/* Coluna Direita (Playground) - Reativa ao Tema */}
+            <div className="md:col-span-6 rounded-xl border border-[var(--playground-border)] bg-[var(--playground-bg)] overflow-hidden min-h-[300px] transition-colors duration-300">
               {renderPlayground(project.id)}
             </div>
 
