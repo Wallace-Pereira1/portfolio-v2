@@ -12,7 +12,7 @@ export function LegacySlider() {
       <div className="relative flex-1 w-full rounded-lg bg-slate-950 overflow-hidden select-none min-h-[220px]">
         
         {/* Camada Moderna (Angular) */}
-        <div className="absolute inset-0 bg-slate-900 flex flex-col p-6 justify-center items-center text-center">
+        <div className="w-full max-w-xs p-4 rounded-xl border border-white/10 bg-slate-900/80 backdrop-blur-md shadow-2xl space-y-3">
           <div className="w-full max-w-xs p-4 rounded-xl border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl space-y-3">
             <div className="flex items-center gap-2 border-b border-white/10 pb-2">
               <div className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />

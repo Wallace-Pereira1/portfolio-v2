@@ -47,7 +47,7 @@ export function InvoiceScanner() {
           📄 Nota_Servico_Rio.png
         </button>
       </div>
-      <div className="flex-1 min-h-[160px] bg-slate-950 rounded-lg relative overflow-hidden flex flex-col p-4 justify-center">
+      <div className="flex-1 min-h-[160px] bg-slate-950 rounded-lg relative overflow-hidden flex flex-col p-4 justify-center border border-white/5">
         {isScanning && (
           <>
             <div className="absolute inset-x-0 h-0.5 bg-gold-500 top-0 shadow-[0_0_15px_#e1b12c] animate-[bounce_1.2s_infinite]" />

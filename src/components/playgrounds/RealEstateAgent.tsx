@@ -83,7 +83,7 @@ export function RealEstateAgent() {
       </div>
 
       {/* Corrigido para evitar o fundo esbranquiçado cumulativo no iOS */}
-      <div className="flex-1 min-h-[140px] border border-slate-200 dark:border-white/5 bg-[var(--bg-secondary)] rounded-lg p-3 flex flex-col justify-center">
+      <div className="flex-1 min-h-[140px] border border-slate-300 dark:border-white/5 bg-slate-900/50 dark:bg-[#0c1524] rounded-lg p-3 flex flex-col justify-center">
         {step === 0 && !isPlaying && (
           <p className="text-center text-xs text-[var(--text-secondary)] font-medium">
             Clique no botão Play para escutar a ligação do Lead.
