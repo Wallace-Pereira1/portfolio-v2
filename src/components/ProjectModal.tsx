@@ -202,8 +202,8 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
               </div>
             </div>
 
-            {/* Coluna Direita (Playground) */}
-            <div className="md:col-span-6 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100/50 dark:bg-white/5 backdrop-blur-sm overflow-hidden min-h-[300px]">
+            {/* Coluna Direita (Playground) - Corrigido para evitar o efeito esbranquiçado no iOS */}
+            <div className="md:col-span-6 rounded-xl border border-slate-200 dark:border-white/10 bg-slate-100 dark:bg-[#070d19] overflow-hidden min-h-[300px]">
               {renderPlayground(project.id)}
             </div>
 
