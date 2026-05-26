@@ -39,11 +39,22 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
 
   if (!open || !project) return null
 
-  // Função que mapeia os IDs reais para renderizar os componentes de simulação
+  // Função que mapeia os IDs reais para renderizar os componentes ou imagem
   const renderPlayground = (id: string) => {
     const normalizedId = id.toLowerCase().trim().replace('project-', '')
 
     switch (normalizedId) {
+      case 'bistro-cardapio':
+        return (
+          <div className="w-full h-full p-2 flex items-center justify-center bg-zinc-900">
+            <img 
+              src="https://i.imgur.com/WM1YEWY.png"
+              alt="Preview do Cardápio Digital" 
+              className="w-full h-full object-contain rounded-lg"
+            />
+          </div>
+        )
+
       case 'legacy-modernization':
       case 'legacy-modernization-project':
       case 'legacy':
@@ -96,9 +107,6 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
           <div className="flex h-full flex-col items-center justify-center text-center p-6 bg-slate-950/10">
             <p className="text-xs text-[var(--text-secondary)] font-medium">
               ID não interceptado: <span className="font-mono bg-slate-200 dark:bg-white/10 px-1.5 py-0.5 rounded text-[var(--text-primary)]">{id}</span>
-            </p>
-            <p className="text-[11px] text-[var(--text-secondary)] mt-1">
-              Adicione este caso ou ajuste a constante do projeto.
             </p>
           </div>
         )
@@ -202,7 +210,7 @@ export function ProjectModal({ open, project, onClose }: ProjectModalProps) {
               </div>
             </div>
 
-            {/* Coluna Direita (Playground) - Reativa ao Tema */}
+            {/* Coluna Direita (Playground/Imagem) */}
             <div className="md:col-span-6 rounded-xl border border-[var(--playground-border)] bg-[var(--playground-bg)] overflow-hidden min-h-[300px] transition-colors duration-300">
               {renderPlayground(project.id)}
             </div>

@@ -91,6 +91,13 @@ export const PROJECTS = {
       },
     },
     {
+      id: 'bistro-cardapio',
+      title: 'Cardápio Digital Interativo',
+      descriptionLong: 'Cardápio digital modular com carrinho, modal de revisão e integração via WhatsApp. Engenharia: Arquitetura baseada em componentes, otimização de performance com useMemo e UX mobile-first com menu responsivo e busca inteligente.',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'UX/UI'],
+      links: { github: 'https://github.com/Wallace-Pereira1/cardapio-digital-interativo', demo: 'https://bistro-cardapio.vercel.app/' },
+    },
+    {
       id: 'real-estate-ai-agent',
       title: 'Agente de Vendas Imobiliário com IA',
       descriptionLong:
@@ -128,16 +135,7 @@ export const PROJECTS = {
       links: {
         github: 'https://github.com/Wallace-Pereira1/fiscal-sentinel',
       },
-    },
-    {
-      id: 'bento-portfolio-v2',
-      title: 'Portfólio Bento',
-      descriptionLong: 'Esta SPA construída com Vite, Tailwind v4 e Framer Motion.',
-      technologies: ['React', 'TypeScript', 'Vite', 'Tailwind v4', 'Framer Motion'],
-      links: {
-        github: 'https://github.com/Wallace-Pereira1/portfolio-v2.git',
-      },
-    },
+    }
   ],
   EN: [
     {
@@ -150,6 +148,13 @@ export const PROJECTS = {
         github: 'https://github.com/Wallace-Pereira1/hub-parceiros',
         demo: 'https://hub-parceiros-zeta.vercel.app/',
       },
+    },
+    {
+      id: 'bistro-cardapio',
+      title: 'Interactive Digital Menu',
+      descriptionLong: 'Modular digital menu with cart, review modal, and WhatsApp integration. Features mobile-first UX, intelligent search, and optimized React performance.',
+      technologies: ['React', 'TypeScript', 'Tailwind CSS', 'Vite', 'UX/UI'],
+      links: { github: 'https://github.com/Wallace-Pereira1/cardapio-digital-interativo', demo: 'https://bistro-cardapio.vercel.app/' },
     },
     {
       id: 'real-estate-ai-agent',
@@ -188,15 +193,6 @@ export const PROJECTS = {
       technologies: ['TypeScript', 'Node.js', 'Automation', 'Data Integrity', 'Compliance'],
       links: {
         github: 'https://github.com/Wallace-Pereira1/fiscal-sentinel',
-      },
-    },
-    {
-      id: 'bento-portfolio-v2',
-      title: 'Bento Portfolio',
-      descriptionLong: 'This SPA built with Vite, Tailwind v4, and Framer Motion.',
-      technologies: ['React', 'TypeScript', 'Vite', 'Tailwind v4', 'Framer Motion'],
-      links: {
-        github: 'https://github.com/Wallace-Pereira1/portfolio-v2.git',
       },
     },
   ]
@@ -299,6 +295,7 @@ export const BENTO_CARDS = {
       type: "project",
       projectId: "invoice-ocr-ia"
     },
+    
 
   ]
 };
